@@ -11,21 +11,26 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public class TodosContatos {
-
-    @PersistenceContext
-    private EntityManager entityManager;
-
-    @Transactional
-    public Contato salvar(Contato contato) {
-
-	entityManager.persist(contato);
-	return contato;
-    }
-
-    @SuppressWarnings("unchecked")
-    public List<Contato> listar() {
-
-	return entityManager.createQuery("select c from Contato c").getResultList();
-    }
-
+	
+	@PersistenceContext
+	private EntityManager entityManager;
+	
+	@Transactional
+	public Contato salvar(Contato contato) {
+		
+		entityManager.persist(contato);
+		return contato;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Contato> listar() {
+		
+		return entityManager.createQuery("select c from Contato c").getResultList();
+	}
+	
+	public Contato buscarPorId(long id) {
+		
+		return entityManager.find(Contato.class, id);
+	}
+	
 }
