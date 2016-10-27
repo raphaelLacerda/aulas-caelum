@@ -9,8 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import modelo.Contato;
-
 @Controller
 @EnableAutoConfiguration
 public class ContatoController {
@@ -27,5 +25,7 @@ public class ContatoController {
 		model.addAttribute("contatos", contatos);
 		return "contato/lista";
 	}
+	
+	
 	
 }
