@@ -1,0 +1,16 @@
+.header{
+    background-color: #0082c7;
+}
+
+.header-title{
+    color: #B3DAEE;
+}
+
+.header-button{
+    background-color: #006195;
+    color: #FFF;
+    height: 22px;
+    padding: 8px;
+    box-sizing: content-box;
+
+}
