@@ -23,10 +23,12 @@
 * inspect element - pick color
 * css/block/header.css
 * class header, header-title (evitar o title pq é muito genérico)
+    * header padding
 * como remover os espaçamentos?
     * RESET.css == margin firefox X chrome
         * como tirar a margerm de todos os elementos?
         * criar o css/reset.css
+
 * header-button
     * color
     * background-color
@@ -38,7 +40,7 @@
 
 **exercício - preparando terreno para os cartões**
 
-
+* div.cartao*5>p.cartao-conteudo>lorem
 
 
 
