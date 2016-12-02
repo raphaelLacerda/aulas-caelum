@@ -45,6 +45,22 @@
 
 
 
+# Capítulo 4 Jquery
+
+* compatibilidade com outros navegadores -- blindagem
+* por quê usar o ready?
+* event.preventDefault();
+* navegação do DOM
+    * next, nextAll, prev, prevAll, parent
+* função css
+* addclass, removeclass, toogleclass
+* criando elementos
+    * var novoCartão = document.createElement("div");
+	* novoCartão.classList.add("cartao");
+    *  var botao = $("<button>");
+* appendTo x prependTo
+    * $("<span>", { class : "info" }).text("Novo span!").prependTo(".item");
+
 
 
 
