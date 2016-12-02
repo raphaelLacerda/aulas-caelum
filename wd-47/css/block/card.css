@@ -1,0 +1,53 @@
+.card {
+    background: #EBEF40;
+    display: inline-block;
+    width: 25%;
+    padding: 16px;
+    position: relative;
+}
+
+[data-color="first"]{
+    background-color: chartreuse;
+}
+
+[data-color="second"]{
+    background-color: darkgoldenrod;
+}
+
+[data-color="third"]{
+    background-color: darkviolet;
+}
+
+[data-color="fourth"]{
+    background-color: cyan;
+}
+
+
+.card-colors{
+    width: 32px;
+    height: 32px;
+    text-indent: -999px;
+    overflow: hidden;
+    border-radius: 50%;
+    display: inline-block;
+    border: 2px solid rgba(0, 0, 0, 0.5)
+}
+
+.card-colors_colorFirst{
+    background-color: chartreuse;
+}
+.card-colors_colorSecond{
+    background-color: darkgoldenrod;
+}
+.card-colors_colorThird{
+    background-color: darkviolet;
+}
+.card-colors_colorFourth{
+    background-color: cyan;
+}
+
+
+.wrap-card-colors{
+    position: absolute;
+    top: -16px;
+}

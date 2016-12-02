@@ -1,4 +1,15 @@
 *{
     margin: 0;
     padding: 0;
+    border: none;
+}
+
+
+a{
+    color: inherit;
+    text-decoration: inherit;
+}
+
+ul, ol, li{
+    list-style: none
 }

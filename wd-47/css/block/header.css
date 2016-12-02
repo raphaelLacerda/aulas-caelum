@@ -1,10 +1,16 @@
 .header{
     background-color: #0082c7;
-    padding: 16px;
+    /*padding: 16px; quando colocar o 0 10% de padding no container, isso nao é mais necessário*/
+    height: 40px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    margin-bottom: 40px;
 }
 
 .header-title{
     color: #B3DAEE;
+    display: inline;
+    vertical-align: middle;
 }
 
 .header-button{
@@ -13,5 +19,15 @@
     height: 22px;
     padding: 8px;
     box-sizing: content-box;
+    font-size: 16px;
+    display: inline-block;
 
+}
+
+.header-button:first-child{
+    margin-right: 15px;
+}
+
+.header-menu{
+    float: right;
 }

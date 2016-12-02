@@ -1,32 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>CEEP - projeto finalizado</title>
-    <link rel="stylesheet" href="css/block/header.css">
     <link rel="stylesheet" type="" href="css/reset.css">
-    <link rel="stylesheet" type="" href="css/estilo.css"
+    <link rel="stylesheet" type="" href="css/base.css">
+    <link rel="stylesheet" href="css/block/header.css">
+    <link rel="stylesheet" href="css/block/card.css">
 </head>
+
 <body>
-    <header class="header">
+    <header class="header container">
         <h1 class="header-title">Ceep</h1>
-        <button class="header-button">Linhas</button>
-        <button class="header-button">?</button>
+
+        <nav class="header-menu">
+            <ul>
+                <li class="header-button"><a href="">Linhas</a></li>
+                <li class="header-button"><a href="">?</a></li>
+            </ul>
+        </nav>
     </header>
-    <div class="cartao">
-        <p class="cartao-conteudo">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore cumque accusamus nisi aspernatur doloribus dolore maiores, officia, quod labore assumenda a incidunt nihil delectus, consectetur quidem dolorum nulla. Ab, saepe.</p>
-    </div>
-    <div class="cartao">
-        <p class="cartao-conteudo">Dicta ut qui magnam perferendis sed nemo, sint, amet ex dolorem ad iste expedita fugiat hic, voluptas ipsam! Fugiat in minus odit, odio repudiandae ducimus debitis at dolores aspernatur hic.</p>
-    </div>
-    <div class="cartao">
-        <p class="cartao-conteudo">Veritatis recusandae cum consectetur totam fugit architecto nobis laboriosam sit odio nemo, veniam, beatae asperiores neque perferendis odit enim ipsam eaque quibusdam, aspernatur itaque vitae laudantium! Dicta rem, dolorem quas.</p>
-    </div>
-    <div class="cartao">
-        <p class="cartao-conteudo">Blanditiis dolorum ut sint laboriosam, placeat fugit voluptate, neque molestias eum veniam quo cupiditate repudiandae beatae, recusandae laborum nulla necessitatibus fugiat quas maiores consequuntur amet id facere. Ab ducimus, in.</p>
-    </div>
-    <div class="cartao">
-        <p class="cartao-conteudo">Illo quidem reiciendis iure sunt eos sapiente consequuntur ab consequatur autem neque molestiae molestias accusantium, ratione, est error voluptas nulla itaque laboriosam odio alias dolore vero fuga quod eaque. Dolor.</p>
-    </div>
+    <section class="container">
+        <ol>
+            <li class="card" data-color="first">
+
+                <nav class="wrap-card-colors">
+                    <ul>
+                        <li class="card-colors" data-color="first">
+                            <a href=""></a>
+                        </li>
+                        <li class="card-colors" data-color="second">
+                            <a href=""></a>
+                        </li>
+                        <li class="card-colors" data-color="third">
+                            <a href=""></a>
+                        </li>
+                        <li class="card-colors" data-color="fourth">
+                            <a href=""></a>
+                        </li>
+                    </ul>
+                </nav>
+                <p class="cartao-conteudo">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero, voluptatem iste distinctio voluptatibus, soluta suscipit. Saepe a id dolorum, libero nulla quam. Eos in ea omnis nesciunt. Mollitia, doloribus, temporibus.</p>
+            </li>
+            <li class="card " data-color="second">
+                <nav class="wrap-card-colors">
+                    <ul>
+                        <li class="card-colors" data-color="first">
+                            <a href=""></a>
+                        </li>
+                        <li class="card-colors" data-color="second">
+                            <a href=""></a>
+                        </li>
+                        <li class="card-colors" data-color="third">
+                            <a href=""></a>
+                        </li>
+                        <li class="card-colors" data-color="fourth">
+                            <a href=""></a>
+                        </li>
+                    </ul>
+                </nav>
+                <p class="cartao-conteudo">Molestiae sed, placeat fuga tempore accusantium inventore corporis quo cumque repellendus provident libero exercitationem. Magnam quaerat aliquam necessitatibus, perferendis enim voluptas quidem alias dolorem quasi tempore officia! Tempora,
+                    voluptatibus, odio.</p>
+            </li>
+            <li class="card" data-color="third">
+                <nav class="wrap-card-colors">
+                    <ul>
+                        <li class="card-colors" data-color="first">
+                            <a href=""></a>
+                        </li>
+                        <li class="card-colors" data-color="second">
+                            <a href=""></a>
+                        </li>
+                        <li class="card-colors" data-color="third">
+                            <a href=""></a>
+                        </li>
+                        <li class="card-colors" data-color="fourth">
+                            <a href=""></a>
+                        </li>
+                    </ul>
+                </nav>
+                <p class="cartao-conteudo">Omnis ipsa nobis distinctio quo deleniti necessitatibus, amet debitis sit eius ab recusandae, accusantium unde. Dolorum tenetur ratione obcaecati itaque accusantium sunt quod natus, excepturi, explicabo ipsa labore, quaerat non.</p>
+            </li>
+            <li class="card" data-color="fourth">
+                <nav class="wrap-card-colors">
+                    <ul>
+                        <li class="card-colors" data-color="first">
+                            <a href=""></a>
+                        </li>
+                        <li class="card-colors" data-color="second">
+                            <a href=""></a>
+                        </li>
+                        <li class="card-colors" data-color="third">
+                            <a href=""></a>
+                        </li>
+                        <li class="card-colors" data-color="fourth">
+                            <a href=""></a>
+                        </li>
+                    </ul>
+                </nav>
+                <p class="cartao-conteudo">Culpa dolores sit corporis eaque deleniti laudantium, error quaerat vero eligendi, aperiam facere amet est quidem aliquid deserunt, harum! Cum laboriosam ullam minima itaque rem! Velit doloribus laboriosam inventore nobis.</p>
+            </li>
+        </ol>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="js/block/card.js">
+    </script>
 </body>
+
 </html>
