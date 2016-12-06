@@ -3,11 +3,14 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
     <title>CEEP - projeto finalizado</title>
-    <link rel="stylesheet" type="" href="css/reset.css">
-    <link rel="stylesheet" type="" href="css/base.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/block/header.css">
+    <link rel="stylesheet" href="css/block/newCard.css">
     <link rel="stylesheet" href="css/block/card.css">
+    <!-- mantenha a importação na ordem que eles são usadas na página -->
 </head>
 
 <body>
@@ -21,80 +24,125 @@
             </ul>
         </nav>
     </header>
+
+    <section class="container newCard">
+        <form>
+            <textarea class="newCard-content" cols="30" rows="10" placeholder="digita seu TODO aqui"></textarea>
+            <input type="submit" value="Salvar" class="newCard-action">
+        </form>
+    </section>
+
     <section class="container">
-        <ol>
+        <ol class="wrap-card">
             <li class="card" data-color="first">
 
-                <nav class="wrap-card-colors">
+                <nav class="wrap-card-options">
                     <ul>
-                        <li class="card-colors" data-color="first">
+                        <li class="card-options card_delete"><a href="">Excluir</a></li>
+
+                        <li class="card-options card_edit"><a href="">Editar</a></li>
+                        <li class="card-options" data-color="first">
                             <a href=""></a>
                         </li>
-                        <li class="card-colors" data-color="second">
+                        <li class="card-options" data-color="second">
                             <a href=""></a>
                         </li>
-                        <li class="card-colors" data-color="third">
+                        <li class="card-options" data-color="third">
                             <a href=""></a>
                         </li>
-                        <li class="card-colors" data-color="fourth">
+                        <li class="card-options" data-color="fourth">
                             <a href=""></a>
                         </li>
                     </ul>
                 </nav>
-                <p class="cartao-conteudo">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero, voluptatem iste distinctio voluptatibus, soluta suscipit. Saepe a id dolorum, libero nulla quam. Eos in ea omnis nesciunt. Mollitia, doloribus, temporibus.</p>
+                <p class="cartao-conteudo" contenteditable="false">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero, voluptatem iste distinctio voluptatibus, soluta suscipit. Saepe a id dolorum, libero nulla quam. Eos in ea omnis nesciunt. Mollitia, doloribus, temporibus.</p>
             </li>
+
             <li class="card " data-color="second">
-                <nav class="wrap-card-colors">
+                <nav class="wrap-card-options">
                     <ul>
-                        <li class="card-colors" data-color="first">
+                        <li class="card-options card_delete"><a href="">Excluir</a></li>
+                        <li class="card-options card_edit"><a href="">Editar</a></li>
+                        <li class="card-options" data-color="first">
                             <a href=""></a>
                         </li>
-                        <li class="card-colors" data-color="second">
+                        <li class="card-options" data-color="second">
                             <a href=""></a>
                         </li>
-                        <li class="card-colors" data-color="third">
+                        <li class="card-options" data-color="third">
                             <a href=""></a>
                         </li>
-                        <li class="card-colors" data-color="fourth">
+                        <li class="card-options" data-color="fourth">
                             <a href=""></a>
                         </li>
                     </ul>
                 </nav>
                 <p class="cartao-conteudo">Molestiae sed, placeat fuga tempore accusantium inventore corporis quo cumque repellendus provident libero exercitationem. Magnam quaerat aliquam necessitatibus, perferendis enim voluptas quidem alias dolorem quasi tempore officia! Tempora,
-                    voluptatibus, odio.</p>
+                    voluptatibus, odio. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad corporis provident quia distinctio. Asperiores voluptates itaque inventore optio ab, quia eius, sed, assumenda sit doloremque numquam non quam illum aut.</p>
             </li>
+
             <li class="card" data-color="third">
-                <nav class="wrap-card-colors">
+                <nav class="wrap-card-options">
                     <ul>
-                        <li class="card-colors" data-color="first">
+                        <li class="card-options card_delete"><a href="">Excluir</a></li>
+                        <li class="card-options card_edit"><a href="">Editar</a></li>
+                        <li class="card-options" data-color="first">
                             <a href=""></a>
                         </li>
-                        <li class="card-colors" data-color="second">
+                        <li class="card-options" data-color="second">
                             <a href=""></a>
                         </li>
-                        <li class="card-colors" data-color="third">
+                        <li class="card-options" data-color="third">
                             <a href=""></a>
                         </li>
-                        <li class="card-colors" data-color="fourth">
+                        <li class="card-options" data-color="fourth">
                             <a href=""></a>
                         </li>
                     </ul>
                 </nav>
                 <p class="cartao-conteudo">Omnis ipsa nobis distinctio quo deleniti necessitatibus, amet debitis sit eius ab recusandae, accusantium unde. Dolorum tenetur ratione obcaecati itaque accusantium sunt quod natus, excepturi, explicabo ipsa labore, quaerat non.</p>
             </li>
+
             <li class="card" data-color="fourth">
-                <nav class="wrap-card-colors">
+                <nav class="wrap-card-options">
                     <ul>
-                        <li class="card-colors" data-color="first">
+                        <li class="card-options card_delete"><a href="">Excluir</a></li>
+
+                        <li class="card-options card_edit"><a href="">Editar</a></li>
+                        <li class="card-options" data-color="first">
                             <a href=""></a>
                         </li>
-                        <li class="card-colors" data-color="second">
+                        <li class="card-options" data-color="second">
                             <a href=""></a>
                         </li>
-                        <li class="card-colors" data-color="third">
+                        <li class="card-options" data-color="third">
                             <a href=""></a>
                         </li>
-                        <li class="card-colors" data-color="fourth">
+                        <li class="card-options" data-color="fourth">
+                            <a href=""></a>
+                        </li>
+                    </ul>
+                </nav>
+                <p class="cartao-conteudo">Culpa dolores sit corporis eaque deleniti laudantium, error quaerat vero eligendi, aperiam facere amet est quidem aliquid deserunt, harum! Cum laboriosam ullam minima itaque rem! Velit doloribus laboriosam inventore nobis.</p>
+            </li>
+
+
+            <li class="card" data-color="fourth">
+                <nav class="wrap-card-options">
+                    <ul>
+                        <li class="card-options card_delete"><a href="">Excluir</a></li>
+
+                        <li class="card-options card_edit"><a href="">Editar</a></li>
+                        <li class="card-options" data-color="first">
+                            <a href=""></a>
+                        </li>
+                        <li class="card-options" data-color="second">
+                            <a href=""></a>
+                        </li>
+                        <li class="card-options" data-color="third">
+                            <a href=""></a>
+                        </li>
+                        <li class="card-options" data-color="fourth">
                             <a href=""></a>
                         </li>
                     </ul>
@@ -106,8 +154,8 @@
 
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 
-    <script type="text/javascript" src="js/block/card.js">
-    </script>
+    <script type="text/javascript" src="js/block/card.js"></script>
+    <script type="text/javascript" src="js/block/newCard.js"></script>
 </body>
 
 </html>

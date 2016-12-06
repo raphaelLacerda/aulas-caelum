@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     border: none;
+    outline: none;
 }
 
 
@@ -12,4 +13,14 @@ a{
 
 ul, ol, li{
     list-style: none
+}
+
+
+body{
+    background: #E8E8E8;
+    font-family: 'Verdana', sans-serif;
+}
+
+textarea{
+  font-family: inherit;
 }

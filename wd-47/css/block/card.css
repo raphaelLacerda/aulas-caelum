@@ -1,10 +1,94 @@
+
+
 .card {
     background: #EBEF40;
     display: inline-block;
-    width: 25%;
+    width: 100%;
+    /*width: 190px;*/
     padding: 16px;
     position: relative;
+    flex-grow: 1;
+    box-sizing: border-box;
+    text-align: left;
+    margin: 10px;
 }
+
+
+@media (min-width: 560px){
+   .card {
+     width: 55%;
+     flex-grow: 1;
+     flex-basis: 190px;
+   }
+ }
+
+
+
+.card:hover .wrap-card-options{
+  opacity: 1;
+}
+
+.card_delete{
+  background-image: url('../../img/remove.png');
+  margin-right: 20px;
+
+}
+
+.card_edit{
+  background-image: url('../../img/edit.jpg');
+}
+
+.card-options{
+    width: 32px;
+    height: 32px;
+    box-sizing: border-box;
+    text-indent: -999px;
+    overflow: hidden;
+    border-radius: 50%;
+    display: inline-block;
+    border: 2px solid rgba(0, 0, 0, 0.5);
+    background-size: 60%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #fff;
+    cursor: pointer;
+
+}
+
+/* se for card-options e estiver ativo*/
+.card-options.isActive{
+  border-width: 4px;
+}
+
+.cartao-conteudo[contenteditable="true"]{
+  outline: 2px dashed rgba(255, 0, 0, 0.5);
+}
+
+.wrap-card-options{
+    position: absolute;
+    top: -16px;
+    opacity: 0;
+    transition: opacity 1s linear;
+    align-items: flex-start;
+}
+
+
+.wrap-card{
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+
+.mural--linhas {
+		flex-direction: column;
+	}
+
+	.mural--linhas .cartao {
+		flex-direction: auto;
+		width: auto;
+		display: block;
+	}
 
 [data-color="first"]{
     background-color: chartreuse;
@@ -20,34 +104,4 @@
 
 [data-color="fourth"]{
     background-color: cyan;
-}
-
-
-.card-colors{
-    width: 32px;
-    height: 32px;
-    text-indent: -999px;
-    overflow: hidden;
-    border-radius: 50%;
-    display: inline-block;
-    border: 2px solid rgba(0, 0, 0, 0.5)
-}
-
-.card-colors_colorFirst{
-    background-color: chartreuse;
-}
-.card-colors_colorSecond{
-    background-color: darkgoldenrod;
-}
-.card-colors_colorThird{
-    background-color: darkviolet;
-}
-.card-colors_colorFourth{
-    background-color: cyan;
-}
-
-
-.wrap-card-colors{
-    position: absolute;
-    top: -16px;
 }

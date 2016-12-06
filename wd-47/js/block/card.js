@@ -1,14 +1,39 @@
-//$('.cartao-conteudo').before('<nav class="wrap-card-colors"><ul><li class="card-colors" data-color="first"><a href=""></a></li><li class="card-colors" data-color="second"> <a href=""></a></li><li class="card-colors" data-color="third"><a href=""></a></li><li class="card-colors" data-color="fourth"><a href=""></a></li></ul></nav>');
+definirCartoes();
 
-var $cardColors = document.querySelectorAll('.card-colors');
+function definirCartoes() {
 
-$cardColors.forEach(function(elemento, index){
+    var $cardOptions = document.querySelectorAll('.card-options');
 
-    elemento.addEventListener('click', function(){
+    $cardOptions.forEach(function(elemento, index) {
 
-        $card = this.parentNode.parentNode.parentNode;
+        elemento.addEventListener('click', function() {
 
-        console.log($card.dataset);
-        $card.dataset.color = this.dataset.color;
+            for (var i = 0; i < this.parentNode.children.length; i++) {
+                this.parentNode.children[i].classList.remove('isActive');
+            }
+            this.parentNode.parentNode.nextElementSibling.setAttribute('contenteditable', false);
+
+            $card = this.parentNode.parentNode.parentNode;
+
+            if (this.dataset.color) {
+                $card.dataset.color = this.dataset.color;
+            }
+
+            this.classList.add('isActive');
+
+
+
+            if (this.classList.contains('card_delete')) {
+                this.parentNode.parentNode.parentNode.remove();
+            }
+
+            if (this.classList.contains('card_edit')) {
+                this.parentNode.parentNode.nextElementSibling.setAttribute('contenteditable', true);
+                this.parentNode.parentNode.nextElementSibling.focus();
+
+            }
+
+        });
     });
-});
+
+}

@@ -1,10 +1,10 @@
-body {
-    background: #E8E8E8;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-
-
-
 .container{
     padding: 0 10%;
+}
+
+.error{
+  color: rgb(249, 68, 11);
+  text-align: center;
+  display: block;
+  font-size: 0.7em;
 }
