@@ -1,0 +1,171 @@
+/* reset */
+*,
+*:after,
+*:before {
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	font-size: 1em;
+}
+
+body {
+	font-family: Arial, helvetica, sans-serif;
+	line-height: 1.4;
+}
+
+header {
+	background: #f0f0f0;
+	width: 100%;
+}
+.logo img {
+	display: block;
+}
+
+/* busca */
+.busca {
+	overflow: hidden; /* clearfix */
+}
+	.busca input {
+		border: 1px solid #CCC;
+		border-bottom-color: #aaa;
+		border-right-width: 0;
+		border-radius: 5px 0 0 5px;
+		box-shadow: inset 0 1px 1px rgba(0,0,0,0.1);
+		color: #555;
+		
+		height: 1.7em;
+		padding: 0 0.16em;
+
+		float: left;
+		-webkit-appearance: none;
+	}
+	.busca button {
+		background: #f0f0f0;
+		background: linear-gradient(white, white 50%, #eee);
+
+		border: 1px solid #CCC;
+		border-bottom-color: #aaa;
+		border-radius: 0 5px 5px 0;
+		color: #777;
+		font-size: 90%;
+
+		line-height: 1.667em;
+		height: 1.888888889em;
+		padding: 0 0.5em;
+		text-align: center;
+		text-transform: lowercase;
+
+		float: left;
+	}
+		.busca button:hover {
+			color: #0669de;
+		}
+
+/* categorias */
+.noticias {
+	color: #ca0000;
+}
+.esportes {
+	color: #3ea909;
+}
+.famosos {
+	color: #ff7f00;
+}
+
+.menu-principal {
+	font-weight: bold;
+	list-style-type: none;
+	}
+	.menu-principal a {
+		display: block;
+		padding-right: 1em;
+		margin-right: 1em;
+
+		line-height: 1;
+		text-decoration: none;
+		text-transform: lowercase;
+	}
+		.menu-principal a:hover {
+			opacity: 0.8;
+		}
+
+
+/* lista de notícias */
+.chamada {
+	border-bottom: 1px dotted #ccc;
+	display: block;
+	margin-bottom: 1em;
+	padding-bottom: 1em;
+
+	text-decoration: none;
+	width: 100%;
+	overflow: hidden;
+}
+	.chamada:last-child {
+		border-bottom: 0;
+	}
+
+	.chamada img {
+		border-radius: 5px;
+		display: block;
+		float: left;
+		margin-right: 0.8em;
+	}
+		.chamada.mini img {
+			margin-bottom: 0.4em;
+		}
+	.chamada:hover h2 {
+		text-decoration: underline;
+	}
+
+	.chamada.principal h2 {
+		font-size: 1.8em;
+		line-height: 1.05;
+	}
+	.chamada.normal h2 {
+		font-size: 1em;
+	}
+	.chamada.secundaria h2 {
+		font-size: 0.6em;
+	}
+	.chamada.mini {
+		padding-right: 0.35em;
+	}
+		:not(.mini) .chamada.mini + .mini {
+			padding-left: 0.35em;
+			padding-right: 0;
+		}
+
+
+/* direita da TV */
+.chamada.tv {
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+	.tv img {
+		border-radius: 3px 3px 0 0;
+		margin-top: -1px;
+	}
+	.tv p {
+		clear: both;
+		color: #999;
+		padding: 1.4em 1em 0.25em;
+	}
+	.tv h2 {
+		padding: 0 1em;
+		margin: 0;
+		border: 0;
+	}
+	.tv .bolinha {
+		display: inline-block;
+		border-radius: 50%;
+		background: #aaa;
+		height: 7px;
+		width: 7px;
+		margin-top: 1.4em;
+	}
+		.tv .bolinha:first-of-type {
+			background: #555;
+			margin-left: 1.5em;
+		}

@@ -1,0 +1,124 @@
+@media (min-width: 600px) {
+    html {
+        font-size: 1.125em;
+    }
+}
+@media (min-width: 1000px) {
+    html {
+        font-size: 1.25em;
+    }
+}
+
+.secao {
+    width: 100%;
+    float: left;
+}
+
+@media (min-width: 600px) {
+    .secao {
+        width: 50%;
+    }
+}
+@media (min-width: 1000px) {
+    .secao {
+        width: 33.333%;
+    }
+}
+
+.mini {
+    float: left;
+    width: 50%;
+}
+
+.container{
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+.logo,
+.secao {
+  padding: 0 1%;
+}
+
+img {
+    max-width: 100%;
+}
+
+
+.logo,
+.busca,
+.barra-nav,
+.menu-principal {
+    display: inline-block;
+    vertical-align: middle;
+}
+.menu-principal li {
+    float: left;
+}
+
+
+header {
+    padding: 0.5em 0;
+}
+.destaques {
+    margin-top: 1em;
+}
+.barra-nav {
+    margin: 0.4em 0;
+}
+
+
+
+@media (max-width: 600px) {
+    .barra-nav {
+        background: #f0f0f0;
+        padding: 1em;
+        margin: 0;
+
+        height: 100%;
+        width: 90%;
+        max-width: 320px;
+
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: -90%;
+
+        transition: left 0.3s ease-out;
+    }
+        .menu-ativo .barra-nav {
+            left: 0;
+        }
+
+    .menu-principal li {
+        padding: 1em 0;
+        width: 100%;
+    }
+}
+
+
+
+/*esconder no desktop*/
+@media not all and (max-width: 600px) {
+    .menu-abrir,
+    .menu-fechar {
+        display: none;
+    }
+}
+
+
+
+@media (max-width: 600px) {
+    .menu-ativo:after {
+        content: "";
+        display: block;
+
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+
+        background: rgba(0,0,0,0.4);
+    }
+}

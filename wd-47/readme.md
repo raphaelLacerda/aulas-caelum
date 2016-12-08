@@ -454,10 +454,6 @@ estrutura do página que estamos exibindo.
 
 
 
-
-
-
-
 > contains, add, remove, toggle
 > 
 * button id="mudaLayout" Linhas/button>
@@ -608,6 +604,12 @@ estrutura do página que estamos exibindo.
 * lastChild - Último nó filho do elemento
 
 
+			var $card = document.querySelector('.card');
+			debugger;
+			console.log($card);
+
+
+
 * removendo com transitions
 
 	
@@ -628,29 +630,10 @@ estrutura do página que estamos exibindo.
 	```
 
 
-	```
-		var botoes = document.querySelectorAll(".opcoesDoCartao-remove");
-	
-		for(var i = 0; i < botoes.length; i++){
-			botoes[i].addEventListener("click", removeCartao);
-			this.remove() //não funciona
-			this.parentNode.parentNode.remove(); //aí sim
-		}```
 
 
-		``` javascript
-			function removeCartao(){
-				var botaoRemove = this;
-				var seletorCartao = "#cartao_" + botaoRemove.dataset.ref;
-				var cartao = document.querySelector(seletorCartao);
-		
-				cartao.classList.add("cartao--some");
-		
-				setTimeout(function(){
-					cartao.remove()
-				}, 170);
-			}
-		```
+
+* falar sobre os eventos
 
 * vamos usar o css3 transitions
 * **problema** No caso, nossa transição de .2s aplicada na classe `cartao--some` não será
@@ -668,6 +651,15 @@ visível, já que, logo após a adição da classe, o cartão é removido.
 
 
 
+	```
+		var botoes = document.querySelectorAll(".opcoesDoCartao-remove");
+	
+		for(var i = 0; i < botoes.length; i++){
+			botoes[i].addEventListener("click", removeCartao);
+			this.remove() //não funciona
+			this.parentNode.parentNode.remove(); //aí sim
+		}```
+
 * Se em algum momento decidirmos não colocar o botão de remoção dentro da `<div class="opcoesDoCartao">`, nossa lógica de remoção para de funcionar.
 * link para qual cartao!! href="#cartao_1"
 * botao.href // não rola!! getAttribute
@@ -675,12 +667,29 @@ visível, já que, logo após a adição da classe, o cartão é removido.
 * dataset api
 * data-ref
 
+* usar o Control + D para colocar ID nos cartões
+
 * `<div class="cartao" id="cartao_1">`
 
 
 		``` 
 			<button class="opcoesDoCartao-remove" data-ref="cartao_1">Remover</button>
 			
+		```
+
+
+		``` javascript
+			function removeCartao(){
+				var botaoRemove = this;
+				var seletorCartao = "#cartao_" + botaoRemove.dataset.ref;
+				var cartao = document.querySelector(seletorCartao);
+		
+				cartao.classList.add("cartao--some");
+		
+				setTimeout(function(){
+					cartao.remove()
+				}, 170);
+			}
 		```
 
 ## **Exercício:** Removendo cartões com Data-Attributes
@@ -693,7 +702,12 @@ visível, já que, logo após a adição da classe, o cartão é removido.
 
 ## formulário para adiconar novos TODO's 
 
+
+
+
+
 * section>form>textarea+input[type="submit" value="Salvar"]
+* input:submit.novoCartao-salvar <tab>
 * criar newCard, newCard-content, newCard-action
 * quando o mouse estiver houver, deve aumentar o tamanho
 	* .newCard-content{
@@ -714,41 +728,44 @@ visível, já que, logo após a adição da classe, o cartão é removido.
   font-family: inherit;
 } 	
 
-$newCardForm[0].addEventListener('submit', function(e){
-
-  e.preventDefault();
-
-  var $newCardContent = document.querySelector('.newCard-content');
-
-  if(!$newCardContent.value){
-
-    if(!document.querySelector('.error')){
-      var $error = document.createElement('span');
-      $error.classList.add('error');
-      $error.textContent = 'Preencha o campo acima!';
-      $newCardForm[0].insertBefore($error, $newCardAction[0]);
-    }
-  }else{
-
-    var $card = document.querySelector('.card');
-    $newCard = $card.cloneNode(true);
-    
-    //ou
-    
-    newCardContent = document.createElement('p')
-    newCard = document.createElement('div')
-    newCard.appendChild(newCardContent);
-    
-    
-    $newCard.querySelector('.cartao-conteudo').textContent = $newCardContent.value;
-    document.querySelector('.wrap-card').insertBefore($newCard, $card);
-    definirCartoes();
-  }
-  $newCardForm[0].reset();
-
-
-});
+				$newCardForm[0].addEventListener('submit', function(e){
+				
+					// explicar o preventDefault
+				  e.preventDefault();
+				
+				  var $newCardContent = document.querySelector('.newCard-content');
+				
+				  if(!$newCardContent.value){
+				
+				    if(!document.querySelector('.error')){
+				      var $error = document.createElement('span');
+				      $error.classList.add('error');
+				      $error.textContent = 'Preencha o campo acima!';
+				      $newCardForm[0].insertBefore($error, $newCardAction[0]);
+				    }
+				  }else{
+				
+				    var $card = document.querySelector('.card');
+				    $newCard = $card.cloneNode(true);
+				    
+				    //ou
+				    
+				    newCardContent = document.createElement('p')
+				    newCard = document.createElement('div')
+				    newCard.appendChild(newCardContent);
+				    
+				    
+				    $newCard.querySelector('.cartao-conteudo').textContent = $newCardContent.value;
+				    document.querySelector('.wrap-card').insertBefore($newCard, $card);
+				  }
+				  
+				  //explicar o formReset
+				  $newCardForm[0].reset();
+		
+	
+	});
 * poderia ter clonado uma estrutura ja existente
+
 
 ## Motivação JQUery
 
@@ -757,31 +774,52 @@ $newCardForm[0].addEventListener('submit', function(e){
 
 > fala um pouco sobre o Angular, Ember e Blackout aqui
 
+* sempre executar como função anônima
+
+
+* jQuery espera todos os elementos serem carregados
+
+
+			``` javascript
+			$(function() {
+			  var jqBotao = $("#botaoaviso");
+			  jqBotao.text("novo texto");
+			});
+			```
+			
+			A forma acima é um atalho para a função `ready`:
+			
+			``` javascript
+			$(document).ready(function() {
+			  var jqBotao = $("#botaoaviso");
+			  jqBotao.text("novo texto");
+			});
+			```
 
 
 ## adicionando novo cartão
-$(".novoCartao").submit(function(event){
-
-					//impede que a página recarregue
-					event.preventDefault();
-
-					//pega o que o usuário digitou
-					var campoConteudo = $(".novoCartao-conteudo");
-			   	var conteudo = campoConteudo.val().trim();
-
-			   		//cria os elementos do cartão e adiciona no DOM
-					if (conteudo){
-						var conteudoTag = $("<p>").addClass("cartao-conteudo")
-						                          .text(conteudo);
-
-						$("<div>").addClass("cartao")
-								  .append(conteudoTag)
-								  .prependTo(".mural");
-					}
-
-					//apaga o conteúdo do textarea
-					campoConteudo.val("");
-				});
+			$(".novoCartao").submit(function(event){
+			
+								//impede que a página recarregue
+								event.preventDefault();
+			
+								//pega o que o usuário digitou
+								var campoConteudo = $(".novoCartao-conteudo");
+						   	var conteudo = campoConteudo.val().trim();
+			
+						   		//cria os elementos do cartão e adiciona no DOM
+								if (conteudo){
+									var conteudoTag = $("<p>").addClass("cartao-conteudo")
+									                          .text(conteudo);
+			
+									$("<div>").addClass("cartao")
+											  .append(conteudoTag)
+											  .prependTo(".mural");
+								}
+			
+								//apaga o conteúdo do textarea
+								campoConteudo.val("");
+							});
  
 
 * pai.append(filho)
@@ -792,9 +830,33 @@ $(".novoCartao").submit(function(event){
 
 
 
+* posso ouvir vários eventos
+
+					``` javascript
+					$("button").on("click mouseover", function(event) {
+					  alert("Executou");
+					  event.preventDefault();
+					});
+					```
+
+* CSS
+Podemos alterar o estilo de elementos dinamicamente com jQuery através de sua função **css**:
+
+					``` javascript
+					$(".mural").css("flex-direction", "column").css("background-color", "black");
+					```
 
 
-## adicionando botão de remover
+* addClass e removeClass
+Como no JavaScript puro, o ideal é deixarmos o CSS no seu 'quadrado', facilitando sua manutenção. Podemos adicionar e remover classes usando jQuery com suas funções **addClass** e **removeClass** respectivamente:
+
+``` javascript
+$(".aviso").addClass("invisivel");
+$(".aviso").removeClass("invisivel");
+```
+
+  
+### adicionando botão de remover no cartão recém criado
 
 [...]
 
@@ -854,8 +916,6 @@ if(conteudo){
 					          .append(conteudoTag)
 					          .prependTo(".mural");
 			   }
-			   
-
 
 
 
@@ -923,7 +983,7 @@ var padrao = /\d/g;
 * O `rem` é uma medida nova parecida. A diferença é que a conta não leva em consideração todos os pais, mas apenas a raiz, o `<html>`
 
 
-``` css
+		``` css
 				@media (min-width: 560px){
 
 					.cartao--textoPequeno {
@@ -944,9 +1004,9 @@ var padrao = /\d/g;
 						width: 6em;
 						flex-basis: 6em;
 					}
-
 				}
 	```
+
 * adicionar no cartão css 
 
 * a altura dos cartão está sendo esticada
