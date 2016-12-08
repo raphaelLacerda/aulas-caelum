@@ -116,6 +116,11 @@
 
 
 
+* Media Types
+	* print, screen, projection, speench
+	* <link media="screen"/>
+
+
 * falar sobre media query
 * * bostonglobe.com
   * primeiro site responsivo
@@ -927,6 +932,8 @@ if(conteudo){
 ## **Exercício:** Adicionando cartões com jQuery
 
 
+# Capítulo 5
+
 
 * quebra de linha não está rolando
 * resença de caracteres "\n" e trocá-los por uma tag
@@ -948,6 +955,14 @@ var padrao = /\d/g;
 * ao testar, vai ficar zuado text() x html()
 
 `$('<p>').addClass('cartao-conteudo').html(conteudoDigitado);`
+
+		``` javascript
+			// esse Event Listener já existe, fizemos ele no exercício anterior
+			$(".novoCartao").submit(function(event){
+				var conteudo = campoConteudo.val().trim()
+		                                      .replace(/\n/g, "<br>");
+			}
+		```
 
 ## **Exercício:** Cartões mais poderosos com Expressões Regulares
 
@@ -1016,13 +1031,111 @@ var padrao = /\d/g;
 a entender:
 * explicar o foreach
 
+> fazer o align-itens no w3schools
+
+
+
+			@media (min-width: 560px){
+
+					.cartao--textoPequeno {
+						font-size: 1em;
+						width: 11em;
+						flex-basis: 11em;
+
+					}
+
+					.cartao--textoMedio {
+						font-size: 1.5em;
+						width: 9em;
+						flex-basis: 9em;
+					}
+
+					.cartao--textoGrande {
+						font-size: 2em;
+						width: 6em;
+						flex-basis: 6em;
+					}
+
+				}
+
+<!--@note
+	Lembrar os alunos que eles podem pegar aqueles estilos dos cartões
+	que estavam em **estilos.css** e passar para **cartao.css**.
+	-->
+
+
+
+* decidindo o tipo de cartão
+* ver quantas quebras de linha
+* ver total de letras
+* descobrir o tamanho da maior palavra
+* definir o tipo do cartao 
+		
+		``` javascript
+			function decideTipoCartao(conteudo){
+				var quebras = conteudo.split("<br>").length;
+
+				var totalDeLetras = conteudo.replace(/<br>/g, " ").length;
+
+				var ultimoMaior = "";
+				conteudo.replace(/<br>/g, " ")
+						.split(" ")
+						.forEach(function(palavra){
+							if (palavra.length > ultimoMaior.length) {
+								ultimoMaior = palavra;
+							}
+				        });
+				var tamMaior = ultimoMaior.length;
+
+				//no mínimo, todo cartão tem o texto pequeno
+				var tipoCartao = "cartao--textoPequeno";
+
+				if (tamMaior < 9 && quebras < 5 && totalDeLetras < 55) {
+					tipoCartao = "cartao--textoGrande";
+				} else if (tamMaior < 12 && quebras < 6 && totalDeLetras < 75) {
+					tipoCartao = "cartao--textoMedio";
+				}
+
+				return tipoCartao;
+			}
+		```
 
 
 ## **Exercício:** Melhorando a vizualização dos cartões
 
 
-# Página 60 do Alexandre
+* outras funções do JQuery
 
+	* filter
+	* hide / show
+	* animate
+
+
+* buscar por um termo digitado no cartao
+
+	``` javascript
+		//conteúdo de um cartão
+		var conteudo = "Conteudo do meu cartão"
+
+		//termo que o usuário digitou
+		var termoBuscado = "conteudo"
+
+		var temPalavraConteudo = conteudo.match(/termoBuscado/i)
+	```
+
+	* não funciona!! buscar por 'termoBuscado'
+
+* precisamos parametrizar
+
+		``` javascript
+			var texto = "Conteudo do meu cartão";
+			var termoBuscado = "conteudo";
+
+			var regex = new RegExp(termoBuscado, "i");
+
+			var temPalavraConteudo = texto.match(regex);
+		```
+	* i == case insensitve
 
 ## **Exercício:** Buscando cartões com jQuery
 
@@ -1030,13 +1143,173 @@ a entender:
 
 
 
+		``` javascript
+			$("#busca").on("input", function(){
+				//guarda o valor digitado, removendo espaços extras.
+				var busca = $(this).val().trim();
 
+				if(busca.length){
+					$(".cartao").hide().filter(function(){
+						return $(this).find(".cartao-conteudo")
+						              .text()
+									  .match(new RegExp(busca, "i"));
+					}).show();
+				}else{
+					$(".cartao").show();
+				}
+			});
+	```
 
 
 
 
  
-# Capítulo 5 - Dando Poderes ao Conteúdo
+# Capítulo 6 - Ajax
+
+
+* mostrar a função load no w3schools
+
+* chamada básica
+
+		``` javascript
+		$.ajax({
+		  url: "http://www.servidor.com/servico",
+		  success: function (data, textStatus, jqXHR) {
+		    // a resposta da requisição pode ser acessada pelo objeto "data"
+		  }
+		});
+		```
+ 
+* passando parâmetros
+		
+		``` javascript
+		$.ajax({
+		  url: "http://www.servidor.com/servico",
+		  data: {
+		    "busca": "evento caelum"
+		  },
+		  success: function (data, textStatus, jqXHR) {
+		    // callback
+		  }
+		});
+
+
+
+* dataType: "xml",
+
+
+* error
+		``` javascript
+			$.ajax( ......... ).fail(function(xhr){
+			  console.log("erro( " + xhr.status + "):" + xhr.responseText);
+			});
+		```
+
+
+
+* JSON ==> objeto x texto
+
+
+		Para os alunos entenderem que JSON é apenas texto, e ainda não é um objeto:
+
+		```
+		var textoProduto = "{"preco": 100, "descricao": "Cardigan"}";
+		var objetoProduto = JSON.parse(textoProduto);
+
+		console.log(objetoProduto.preco);
+		console.log(objetoProduto.descricao);
+		```
+
+		(Vitor Mattos)
+
+
+
+
+
+
+
+
+> **Google Chrome e acesso a arquivos locais**
+>
+> O Google Chrome não permite requisições AJAX localmente por questões de segurança. Para permitir que uma página local chame outra utilizando AJAX no Chrome é necessário
+> iniciar o navegador pela linha de comando passando parâmetros especiais:
+>
+> *Linux: google-chrome --allow-file-access-from-files
+> *Mac: open /Applications/Google\ Chrome.app --args --allow-file-access-from-files
+
+
+
+
+
+* getJSon
+
+		``` javascript
+		$.getJSON("http://www.servidor.com/servico", function(retorno) {
+
+		});
+		```
+
+
+
+* colocando o button ?
+	
+		``` html
+			<button id="ajuda" class="opcoesDaPagina-opcao
+			opcoesDaPagina-botao">?</button>
+		```
+
+* 	``` javascript
+				$("#ajuda").click(function(){
+					$.getJSON("https://ceep.herokuapp.com/cartoes/instrucoes",
+						function(res){
+							console.log(res);
+						}
+					);
+				});
+	```
+
+
+## **exercício** Pegando instruções com Ajax em JSON
+
+# Capítulo 7 - Boas Práticas
+
+# Capítulo 8 - Eventos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## criando elemento no html - msg amigável
 *  document.createElement
