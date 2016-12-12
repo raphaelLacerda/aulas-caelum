@@ -32,5 +32,20 @@
 * express --view=jade myapp
 * cd myapp
 * npm install
-* DEBUG=myapp:* npm start
+* DEBUG=myapp:* npm start  ==> startando app
 
+
+
+## Fazer sua página teste.jade
+
+* fazer a página teste.jade
+* criar o arquivo de rotas teste.js
+* registrar a rota no app.js
+* enviar dados de um form para users
+* recuperar esses parametros -- http://expressjs.com/pt-br/4x/api.html#req.body
+* transformado os dados em json
+
+
+
+
+> https://www.terlici.com/2014/08/25/best-practices-express-structure.html

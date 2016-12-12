@@ -1226,6 +1226,19 @@ a entender:
 
 
 
+* Explicar o Same Origin Policy
+	
+	* access-controle-allow-origin
+	
+
+	* Mostrar o Network do F12
+		* Method: o método da requisição (GET ou POST)
+		* Status: código de resposta do servidor
+		* Initiator: linha de código que iniciou a requisição
+		* Size: quantidade de dados baixados
+		* Time: tempo total desde a chamada até ela ser completada
+		* Timeline: gráfico mais detalhado do tempo gasto
+	* mostrar os headers
 
 
 
@@ -1271,9 +1284,575 @@ a entender:
 
 ## **exercício** Pegando instruções com Ajax em JSON
 
+			``` html
+				<button
+				 id="sync"
+				 class="opcoesDaPagina-opcao opcoesDaPagina-botao botaoSync"
+				>
+					<!-- Aqui o código do arquivo svg -->
+			</button>
+			```
+
+
+			``` javascript
+		$("#sync").click(function(){
+
+			var cartoes = [];
+
+			$(".cartao").each(function(){
+				var cartao= {};
+				cartao.conteudo = $(this).find(".cartao-conteudo").html();
+				cartoes.push(cartao);
+			});
+
+			//escolha seu nome de usuario aqui
+			var mural = {
+				 usuario: "seu.email@exemplo.com.br"
+				,cartoes: cartoes
+			}
+
+			$.ajax({
+				 url: "https://ceep.herokuapp.com/cartoes/salvar"
+				,method: "POST"
+				,data: mural
+				,success: function(res){
+					console.log(res.quantidade + " cartões salvos em "
+					+ res.usuario);
+				}
+				,error: function(){
+					console.log("Não foi possível salvar o mural");
+				}
+			});
+		});
+	```
+
+## **exercício** Salvando os Cartões com AJAX
+
+
+
+	* nem sempr eo browser vai entender o HEADER allow-origin
+	* explicar o conceito de proxy e proxy reverso
+	* explicar JSONP - (JSON with Padding)
+		 ``` javascript
+			qualquerFuncao({
+			  local: "Caelum",
+			  horaInicial: "19:00",
+			  horaFinal: "23:00"
+			})
+			```
+	* 
+		``` javascript
+		$.getJSON("http://servidor.com.br/servico?callback=nomeFuncao",
+		    function(retorno) {
+
+		});
+
+
+		``` javascript
+			var usuario = "seu.email@exemplo.com.br";
+
+			$.getJSON(
+				"https://ceep.herokuapp.com/cartoes/carregar?callback=?",
+				{usuario: usuario},
+				function(res){
+					var cartoes = res.cartoes;
+					console.log(cartoes.length + " carregados em " + res.usuario);
+					cartoes.forEach(function(cartao){
+						adicionaCartao(cartao.conteudo);
+					});
+				}
+			);
+	```
+
+## **Exercício** Carregando o mural quando a página carrega
+
 # Capítulo 7 - Boas Práticas
 
+* escopo das variáveis
+	* A linguagem JS só tem dois escopos possíveis: o global que vimos e o escopo de função. Ou a variável é acessível por todos, ou ela é uma variável local de função.
+
+			``` javascript
+				function executa() {
+					var usuario = "seu.email@exemplo.com.br";
+					$.getJSON(...);
+				}
+			```
+
+* Claro que só criar a função não é suficiente. Afinal ela precisa ser chamada com `executa();` para rodar o código. Isso deixa escancarado outro problema: o nome da função é o nosso novo global.
+
+* poderíamos deixá-la anônima para não dar conflitos
+		
+			``` javascript
+				function() {
+					var usuario = "seu.email@exemplo.com.br";
+					$.getJSON(...);
+				}
+			```
+
+* Como vamos chamá-la?
+* podemos chamá-la logo depois q ela foi criada - IIFE
+
+> http://benalman.com/news/2010/11/immediately-invoked-function-expression/
+	
+
+			``` javascript
+				(function() {
+					var usuario = "seu.email@exemplo.com.br";
+					$.getJSON(...);
+				})();
+			```			
+
+
+## **Exercício:** Protegendo o nome de usuário com uma IIFE
+
+
+			``` javascript
+				(function(){
+					var usuario = "seu.email@exemplo.com.br";
+
+					$.getJSON(
+						//aqui o código de carregar os cartoes, que fizemos anteriormente
+					);
+
+					$("#sync").click(function(){
+						//aqui o código de salvar no servidor, que fizemos anteriormente
+					}
+				})()
+			```
+
+
+
+## Organizando os arquivos
+
+
+* principal.js esta todo zuado
+* funcionalidades atuais
+	* sincronizacao.js
+	* mudaLayout.js
+	* novoCartao.js
+	* ajuda.js
+	* adicionaCartao.js
+
+
+* Isso nem sempre é verdade, mas em geral é uma boa diminuir sim, em especial
+se usarmos o HTTP/1.1 clássico.
+
+* Falar de spdy
+
+* Falar do HTTP 2.0 
+
+> http://blog.caelum.com.br/o-que-muda-nas-praticas-de-otimizacoes-de-performance-na-web-com-o-http-2-0-e-o-spdy/
+> http://blog.caelum.com.br/as-fantasticas-novidades-do-http-2-0-e-do-spdy/
+> http://blog.caelum.com.br/http2-server-push-na-pratica/
+
+
+
+## **Exercício:** Organizando nosso código em arquivos e IIFE's
+
+
+
+* Quando queremos uma IIFE para encapsular tudo mas precisamos expor alguma coisa para as pessoas chamarem em outras partes do programa?
+
+* Módulos em JavaScript.
+
+
+			``` javascript
+			(function(){
+				var usuario = "seu.email@exemplo.com.br";
+
+				$.getJSON(...);
+
+				function descartaUsuario() {
+					usuario = undefined;
+				}
+
+			})()
+			```
+
+* A nova função descartaUsuario faz exatamente o que queremos. Mas ela está dentro da IIFE. Isso quer dizer que só lá dentro vamos enxergá-la. Apenas código da IIFE pode chamar a função nova.
+
+
+* retornando o que vc quer expor
+
+			``` javascript
+			var descartaUsuario = (function(){
+				var usuario = "seu.email@exemplo.com.br";
+
+				$.getJSON(...);
+
+				function descartaUsuario() {
+					usuario = undefined;
+				}
+
+				return descartaUsuario;
+			})();
+			```
+
+*  Essa variável (por acaso com mesmo nome, mas não precisaria) está no escopo global. Isso quer dizer que qualquer parte do programa pode chamá-la.
+	* **expor aquilo que realmente é necessário**
+
+
+
+* vamos encapsular a funcionalidade de adicionar cartao
+
+		``` javascript
+			var adicionaCartao = (function(){
+
+				function removeCartao(conteudo){
+					//... aqui, código que fizemos em aulas anteriores
+				}
+
+				function decideTipoCartao(conteudo){
+					//... aqui, código que fizemos em aulas anteriores
+				}
+
+				var contador = 0;
+
+				return function(conteudo, cor){
+					contador++;
+
+					var botaoRemove = $("<button>").addClass("opcoesDoCartao-remove")
+												   .attr("data-ref", contador)
+											   .text("Remover")
+											   .click(removeCartao);
+
+					var opcoes = $("<div>").addClass("opcoesDoCartao")
+										   .append(botaoRemove);
+
+					var tipoCartao = decideTipoCartao(conteudo);
+
+					var conteudoTag = $("<p>").addClass("cartao-conteudo")
+							          .append(conteudo);
+
+					$("<div>").attr("id","cartao_" + contador)
+							  .addClass("cartao")
+							  .addClass(tipoCartao)
+							  .append(opcoes)
+							  .append(conteudoTag)
+							  .css("background-color", cor)
+							  .prependTo(".mural");
+
+				}
+
+			})();
+			```
+
+## **Exercício:** Adição e criação de cartões com módulos
+
+
+* Mas e se quisermos expor mais de uma função para o exterior? Como é tudo uma função, há apenas 1 retorno.
+
+* Imagine que queremos mais comportamentos. Além de `descartaUsuario`, agora queremos
+também um `atualizaDados` que faz uma chamada JSON para pegar dados mais atuais do usuário.
+
+			``` javascript
+			var ??? = (function(){
+				var usuario = "seu.email@exemplo.com.br";
+
+				$.getJSON(...);
+
+				function descartaUsuario() {
+					usuario = undefined;
+				}
+
+				function atualizaDados() {
+					// chama JSON de usuário
+				}
+
+				return ???;
+			})();
+			```
+
+### Agrupando funções num objeto
+
+* Ao invés de devolver uma única função, podemos devolver um simples objeto JavaScript
+
+
+
+
+			``` javascript
+			var moduloUsuario = (function(){
+				var usuario = "seu.email@exemplo.com.br";
+
+				$.getJSON(...);
+
+				function descartaUsuario() {
+					usuario = undefined;
+				}
+
+				function atualizaDados() {
+					// chama JSON de usuário
+				}
+
+				return {
+					descarta: descartaUsuario,
+					atualizaDados: atualizaDados
+				};
+			})();
+			```
+
+
+* Fazendo a controladora de cartões
+
+				``` javascript
+					var controladorDeCartoes = (function(){
+
+						//... aqui, código de exercícios anteriores
+
+						var contador = 0;
+
+						function adicionaCartao(conteudo, cor){
+							//... lógica do adicionaCartao
+						}
+
+						return {
+							adicionaCartao: adicionaCartao
+							,idUltimoCartao: function(){
+								return contador;
+							}
+						}
+
+					})();
+				```
+
+
+				```
+					controladorDeCartoes.adicionaCartao(conteudo);
+				```
+
+## **Exercício** Organizando nosso módulo com objetos
+
+
+* adicionaCartao is not defined. O que pode acontecer para o javascript falar pra gente que não existe uma função chamada adicionaCartao?
+
+
+* a IIFE do novoCartao.js depende de um objeto externo, o objeto controladorDeCartao. 
+
+
+				``` javascript
+				(function(controlador){
+
+					$(".novoCartao").submit(function(event){
+
+						var campoConteudo = $(".novoCartao-conteudo");
+
+						var conteudo = campoConteudo.val()
+									    .trim()
+									    .replace(/\n/g, "<br>");
+
+						if(conteudo){
+							controlador.adicionaCartao(conteudo);
+						}
+
+						campoConteudo.val("");
+
+						event.preventDefault();
+
+					});
+				})(controladorDeCartoes);
+				```
+
+
+* Vantagens
+	* A primeira é que podemos dar o nome que quisermos para a variável internamente, potencialmente deixando nosso código menos verboso. 
+	* A segunda é que no final da IIFE temos uma lista de dependências que ela precisa para funcionar. 
+
+
+### Uso do strict
+
+* Vimos que o Javascript permite muita liberdade na hora de escrever nosso código. Muitas vezes, ao invés de dar algum erro, o javascript simplesmente tenta executar o que ele entendeu, mesmo que não seja o que queremos.
+* Por isso, o ECMAScript 5 introduziu o modo estrito no JavaScript. Sua intenção é permitir que desenvolvedores escolham por uma "versão" do JavaScript na qual alguns dos erros mais comuns são tratados de maneira diferente.
+
+
+As principais proibições deste modo são:
+
+
+* declaração `with`
+* omissão de var na declaração de variáveis
+* objetos com propriedades duplicadas
+* funções com parâmetros duplicados
+
+
+				``` javascript
+				(function(){
+				  "use strict";
+
+				  // código omitido
+
+				})();
+				```
+
+
+## Exercício: Dependências com IIFE
+
+
+* Dê uma olhadas em suas IIFE's identifique as dependências e passe elas como parâmetro. Além do `controladorDeCartoes` existe mais algum javascript que tem que ser lido antes dos nossos?
+ 
+> Ver com o alexandre quais são as dependencias
+
+
 # Capítulo 8 - Eventos
+
+
+* Podemos resolver esse problema fazendo ele sincronizar automaticamente toda vez que adicionamos um novo cartão.
+
+* qualquer alteração que o usuário fizer é interessante já salvar no servidor para ele não perder a mudança.
+
+* criaremos uma função sincroniza
+
+* agora precisamos chamar ela de vários lugares
+	* aqui já temos um problema que são vários lugares precisando chamar a mesma função
+
+* Além disso, precisamos fazer outras coisas 
+	* que, além da sincronização, seja mostrado um spinner pro usuário, que o formulário de adição seja desabilitado e que um log seja feito. Onde adicionar esses comportamentos?
+
+* vamos espalhar as chamadas dessas funções?
+	mostraSpinner();
+	desabilitaFormulario();
+	logDeSincronizacao();
+	sincroniza();
+
+* Repare que já tivemos o trabalho de colocar cada lógica numa função separada, mas ainda temos que chamar todas elas em todos os lugares. Não é uma boa ideia e vamos esquecer alguma.
+
+
+* Outra opção seria manter apenas a chamada ao sincroniza() e colocar toda as outras lógicas (spinner, formulário, log) dentro dela. Mas aí teremos uma grande função super complicada cheia de comportamento.
+
+
+* programacao orientada a eventos
+	* $(document).trigger("precisaSincronizar");
+
+
+		``` javascript
+		$(document).on("precisaSincronizar", function(event) {
+		   // posso fazer o ajax
+		});
+
+		$(document).on("precisaSincronizar", function(event) {
+		  // e eu posso fazer o spinner
+		});
+		```
+
+* 
+
+## Exercício: Melhorando a sincronização com Eventos Customizados
+
+* eventos JS
+* tabindex
+
+## editar o cartão
+
+* criar o card_edit
+* reaproveitar o que for diferente em card_options
+	* apaixar o selector de data-color
+* this.parentNode.parentNode.nextElementSibling.setAttribute(contenteditable,true)
+* focus();
+* como tirar essa borda?
+	* outline
+	
+	>entrar no mdn outline
+* reset.css
+* card-content
+	* outline style
+	* .cartao-conteudo{
+  outline: 2px dashed rgba(255, 0, 0, 0.5);
+}
+
+* o problema é que agora essa linha fica sempre!! Como vamos evitar dela ficar aparecendo? 
+	* poderíamos fazer algo JavaScript?
+		* add e remove class seria legal
+	* mas por quê não deixar o CSS resolver?
+	* .cartao-conteudo[contenteditable="true"]
+* ainda temos um problema... o componente permance editado quando troco de cor!! deveria fazer isso?
+	* this.parentNode.parentNode.nextElementSibling.setAttribute('contenteditable',false);
+* agora e se eu clicar fora????? Deveria continuar editável? 	 	
+*
+
+
+## agora vamos esconder os wrap_options
+* display none;
+* poderíamos fazer via javascript
+* 	elemento.addEventListener('mouseover', function() {
+      alert('ok');
+    });
+* mas vamos resolver com css
+* .card:hover .wrap-card-options{
+  display: block;
+}
+
+
+
+## Exercício: Acrescentando a opção de edição do cartão
+
+
+* Um padrão bem conhecido é o "debounce".
+
+Ele é muito útil quando estamos interessados apenas no final da interação do usuário. Por exemplo: o usuário faz scroll mas quero executar algo apenas quando ele parar de fazer scroll. Ou o usuário está digitando algo e quero executar algo ao fim da digitação.
+
+
+			``` javascript
+				// evento que dispara muito
+				window.onscroll = function() {
+					setTimeout(function(){
+						// lógica pesada
+					}, 1000);
+				}
+			```
+
+* mas ainda não resolvemos o problema.. ainda será chamada
+
+			``` javascript
+				var timer;
+
+				// evento que dispara muito
+				window.onscroll = function() {
+					clearTimeout(timer);
+
+					timer = setTimeout(function(){
+						// lógica pesada
+					}, 1000);
+				}
+			```
+
+* Repare que guardamos o último timer na variável global timer. Antes de agendar o próximo timeout, removemos o anterior. Isso efetivamente deixa apenas um timer ativo por vez. E é o último que foi chamado.
+* Efetivamente, o que fazemos é zerar o contador a cada vez que o evento é disparado. Assim, a lógica só será executada depois que o usuário parou de fazer aquela interação repetida.
+
+## Exercício (opcional): Edição do cartão e o Debounce Pattern
+
+
+
+* trocando as cores dos cartões
+* Será que é necessário colocar um `event listener` em cada opção de cor?
+Quantos `event listeners` teremos se nossa página tiver 20 caixas?
+
+* borbulhando!!
+
+				$(".lista").click(function(event){
+					if(event.target.classList.contains("lista-trocaCor")){
+						var itemDaLista = event.target
+					}
+				});
+
+
+## Exercício: Delegação de eventos na troca de cores
+
+
+# Capítlo 9 - Gulp
+
+* falar de gulp, grunt, npm, node, artifactory, 
+
+* npm init
+* npm install
+* npm publish
+
+# Capítulo 10 - SaSS
+
+
+
+
+
+
+
+
 
 
 
@@ -1423,44 +2002,5 @@ a entender:
 
 
 
-## editar o cartão
-
-* criar o card_edit
-* reaproveitar o que for diferente em card_options
-	* apaixar o selector de data-color
-* this.parentNode.parentNode.nextElementSibling.setAttribute(contenteditable,true)
-* focus();
-* como tirar essa borda?
-	* outline
-	
-	>entrar no mdn outline
-* reset.css
-* card-content
-	* outline style
-	* .cartao-conteudo{
-  outline: 2px dashed rgba(255, 0, 0, 0.5);
-}
-
-* o problema é que agora essa linha fica sempre!! Como vamos evitar dela ficar aparecendo? 
-	* poderíamos fazer algo JavaScript?
-		* add e remove class seria legal
-	* mas por quê não deixar o CSS resolver?
-	* .cartao-conteudo[contenteditable="true"]
-* ainda temos um problema... o componente permance editado quando troco de cor!! deveria fazer isso?
-	* this.parentNode.parentNode.nextElementSibling.setAttribute('contenteditable',false);
-* agora e se eu clicar fora????? Deveria continuar editável? 	 	
-*
-
-
-## agora vamos esconder os wrap_options
-* display none;
-* poderíamos fazer via javascript
-* 	elemento.addEventListener('mouseover', function() {
-      alert('ok');
-    });
-* mas vamos resolver com css
-* .card:hover .wrap-card-options{
-  display: block;
-}
 
 
