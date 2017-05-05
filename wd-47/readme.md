@@ -11,6 +11,9 @@
 
 
 
+> http://blog.caelum.com.br/javascript-entenda-a-nova-especificacao-de-classes-do-harmony-es6/
+
+
 # Capitulo 2 - Introdução HTML
 
 * DOCTYPE -- ultima versao estavel
@@ -1683,12 +1686,28 @@ As principais proibições deste modo são:
 				```
 
 
+* fazer este exemplo aí
+
+				``` javascript
+				function teste(){
+				  user = "rafa";
+				};
+				user;
+				teste();
+				user; // criou global
+				```
+
 ## Exercício: Dependências com IIFE
 
 
 * Dê uma olhadas em suas IIFE's identifique as dependências e passe elas como parâmetro. Além do `controladorDeCartoes` existe mais algum javascript que tem que ser lido antes dos nossos?
  
 > Ver com o alexandre quais são as dependencias
+
+> http://blog.caelum.com.br/organize-seu-codigo-javascript-de-maneira-facil/
+> 
+> http://blog.caelum.com.br/criacao-de-objetos-em-javascript/
+
 
 
 # Capítulo 8 - Eventos
@@ -1719,10 +1738,15 @@ As principais proibições deste modo são:
 
 
 * programacao orientada a eventos
-	* $(document).trigger("precisaSincronizar");
+	 
+	 
+	 	
 
 
 		``` javascript
+		
+		$(document).trigger("precisaSincronizar");
+		
 		$(document).on("precisaSincronizar", function(event) {
 		   // posso fazer o ajax
 		});
@@ -1732,7 +1756,7 @@ As principais proibições deste modo são:
 		});
 		```
 
-* 
+> falar do meu artigo no blog da caelum sobre Observer Pattern 
 
 ## Exercício: Melhorando a sincronização com Eventos Customizados
 
@@ -2004,3 +2028,20 @@ Quantos `event listeners` teremos se nossa página tiver 20 caixas?
 
 
 
+
+
+
+
+
+
+
+
+
+## Opcionais
+
+* Express
+* Vue
+* Testes com Jasmine, Karma, PhantomJS
+* Hosting
+* Ecmma Script
+* Gulp, Grunt --> task runners
