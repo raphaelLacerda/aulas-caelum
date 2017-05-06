@@ -8,7 +8,6 @@
 
 > http://blog.caelum.com.br/css-facil-flexivel-e-dinamico-com-less/
 
-> https://www.thoughtworks.com/pt/radar/languages-and-frameworks
 
 * complexo mundo do front-end
 * explicação CEEP - clicar no layout
@@ -242,24 +241,24 @@ web page to fit the screen.**
 * usa flex-grow no card
 
 
-			```
-			.flex-container {
-		    width: 550px;
-		    background-color: lightgrey;
-		    display: flex;
-		    flex-wrap: wrap;
+```css
+.flex-container {
+	width: 550px;
+	background-color: lightgrey;
+	display: flex;
+	flex-wrap: wrap;
 
-			}
+}
 
-			.flex-item {
-			    background-color: cornflowerblue;
-			    width: 100px;
-			    height: 100px;
-			    margin: 10px;
-			        flex-grow: 1;
-			}
+.flex-item {
+	background-color: cornflowerblue;
+	width: 100px;
+	height: 100px;
+	margin: 10px;
+	flex-grow: 1;
+}
 
-			```
+```
 
 
 
@@ -275,14 +274,14 @@ motivação: Precisamos alinhar o button à direta! Mas como agrupá-los?
 * vamos definir width para os cartões
 * width: 190px;
 
+```css
+.cartao{
 
-			`cartao{
+	display: inline-block;
+	width: 190px;
 
-				display: inline-block;
-				width: 190px;
-
-			}`
-
+}
+```
 
 * Mas os cartões estão descentralizados, vai colocando da esquerda pra direita
 * * vamos alinhar os cartões
@@ -295,10 +294,11 @@ motivação: Precisamos alinhar o button à direta! Mas como agrupá-los?
 * O flexbox é um tipo de display pensado para dizer como os filhos de um elemento devem se posicionar dentro dele, como um conjunto, e ele é responsável em fazer os cálculos necessários.
 * section class mural
 
-			`.mural{
-			 display: flex
-			 }`
-
+```css
+.mural{
+	display: flex
+}
+```
 
 * Nesse caso, ele redimensionou todo mundo pra caber em uma única linha.
 *  que ele deve manter o tamanho original e passar os elementos que não couberem para a linha de baixo. Fazemos isso com a propriedade
@@ -312,16 +312,16 @@ motivação: Precisamos alinhar o button à direta! Mas como agrupá-los?
 
 
 
+```css
 
+@media (min-width: 560px){
 
-				@media (min-width: 560px){
-
-				    .cartao {
-				      width: 190px;
-				      display: inline-block;
-				    }
-			  }
-
+	.cartao {
+		width: 190px;
+		display: inline-block;
+	}
+}
+```
 * Nossos cartões não estão respeitando o tamanho de 190px
 
  	* .cartao {
@@ -340,7 +340,7 @@ Mas podemos trocar por box-sizing:
 
 > border-box que indica que o tamanho agora levará em conta até a borda – ou seja, o width será a soma do conteúdo com a borda e o padding.
 
-				entrar no w3schools foi legal
+> entrar no w3schools foi legal
 
 
 ## **exercício - cartões e os layouts responsivos**
@@ -352,19 +352,15 @@ Mas podemos trocar por box-sizing:
 
 
 ### resumão do capítulo
-				* cartões ok no mobile
-				* adaptação para desktop usando inline-block
-				* flexbox css 3 para ocupar e alinhar
-				* mobile first
-				* testando em vários dispositivos com Browser Sync
+* cartões ok no mobile
+* adaptação para desktop usando inline-block
+* flexbox css 3 para ocupar e alinhar
+* mobile first
+* testando em vários dispositivos com Browser Sync
 
 <hr/>
 
 # Capítulo 3 Funcionalidades e JavaScript
-
-> http://blog.caelum.com.br/javascript-entenda-a-nova-especificacao-de-classes-do-harmony-es6/
-
-> https://imasters.com.br/front-end/javascript/o-ecmascript-6-e-o-futuro-do-javascript/?trace=1519021197&source=category-archive
 
 * falar um pouco sobre css selectors
 
@@ -437,15 +433,17 @@ não de um número fixo de pixels, podemos alterá-lo da seguinte forma:
 
 * Introdução ao JavaScript
 
+> http://blog.caelum.com.br/javascript-entenda-a-nova-especificacao-de-classes-do-harmony-es6/
+
+> https://imasters.com.br/front-end/javascript/o-ecmascript-6-e-o-futuro-do-javascript/?trace=1519021197&source=category-archive
+
+> https://www.thoughtworks.com/pt/radar/languages-and-frameworks
+
 > http://blog.caelum.com.br/logging-debugging-profiling-de-javascript-e-muito-mais-com-o-firebug/
 
-* explicar o que é dom
-
-> mozilla JavaScript
->
 > https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/A_re-introduction_to_JavaScript
 
-
+* explicar o que é dom
 * explicar que daria para "alterar" por css
 botaoMudaLayout:active + .mural {
 		flex-direction: column;
@@ -503,17 +501,18 @@ estrutura do página que estamos exibindo.
 
 * document.querySelector(".mural").classList.add("mural--linhas")
 
-	``` javascript
-			function mudaLayout(){
-				document.querySelector(".mural").classList.toggle("mural--linhas");
-			}
-	```
+``` javascript
+function mudaLayout(){
+	document.querySelector(".mural")
+		.classList.toggle("mural--linhas");
+}
+```
 
 	Agora adicione a chamada dessa função na propriedade `onclick` do botão:
 
-	``` html
-			<button id="mudaLayout" onclick="mudaLayout()" >Linhas</button>
-	```
+``` html
+<button id="mudaLayout" onclick="mudaLayout()" >Linhas</button>
+```
 
 
 
@@ -523,16 +522,6 @@ estrutura do página que estamos exibindo.
 * button id="mudaLayout" onclick="alerta()" /button>
 
 * aparecer somente para celular
-*mudaLayout {
-				display: none;
-			}
-
-			@media (min-width: 560px){
-				#mudaLayout {
-					display: inline-block;
-				}
-			}
-
 * h1 é block
 
 
@@ -570,7 +559,7 @@ estrutura do página que estamos exibindo.
 * vamos espaçar os buttons
 
 
-## **exercício - Alterando visualização dos cartões com JS **
+## exercício - Alterando visualização dos cartões com JS 
 <hr/>
 
 ## JavaScript onde?
@@ -581,36 +570,36 @@ estrutura do página que estamos exibindo.
 
 * Mas html devia conter apenas conteúdo, e não lógica como fizemos
 
-	``` javascript
-				document.querySelector("#mudaLayout").addEventListener("click", function(){
+``` javascript
+document.querySelector("#mudaLayout").addEventListener("click", function(){
 
-					//Pega o elemento com a class="mural"
-					var mural = document.querySelector(".mural");
+	//Pega o elemento com a class="mural"
+	var mural = document.querySelector(".mural");
 
-					//Tira ou coloca a classe
-					mural.classList.toggle("mural--linhas");
+	//Tira ou coloca a classe
+	mural.classList.toggle("mural--linhas");
 
-					//Muda o texto do botão
-					if (mural.classList.contains("mural--linhas")){
-						this.textContent = "Blocos";
-					} else {
-						this.textContent = "Linhas";
-					}
-				});
-		```
+	//Muda o texto do botão
+	if (mural.classList.contains("mural--linhas")){
+		this.textContent = "Blocos";
+	} else {
+		this.textContent = "Linhas";
+	}
+});
+```
 
 
 
 * boa prática JS sempre no final
-* <script></script> tem que abrir e fechar
+* tem que abrir e fechar a tag script
 
 > http://stackoverflow.com/questions/69913/why-dont-self-closing-script-tags-work
 
-## **exercício - Colocando JS no devido lugar **
+## exercício - Colocando JS no devido lugar
 
 <hr/>
 
-##Ounvindo eventos em vários elementos
+### Ounvindo eventos em vários elementos
 
 * removendo os cartões
 * * nav>ul>li>a acima do <p> parágrafo
@@ -661,11 +650,11 @@ estrutura do página que estamos exibindo.
 * fazer o if classList contains card_delete
 * this.parentNode.parentNode.parentNode.remove();
 
-
-			var $card = document.querySelector('.card');
-			debugger;
-			console.log($card);
-
+``` javascript
+var $card = document.querySelector('.card');
+debugger;
+console.log($card);
+```
 
 
 * removendo com transitions
@@ -692,20 +681,20 @@ estrutura do página que estamos exibindo.
 >cubic-bezier(x1,y1,x2,y2) - curva de velocidade para animação customizada (avançado);
 
 ```html
-	<div class="cartao">
-		<div class="opcoesDoCartao">
-			<button class="opcoesDoCartao-remove">Remover</button>
-		</div>
-		<p class="cartao-conteudo">
-			Lorem...
-		</p>
+<div class="cartao">
+	<div class="opcoesDoCartao">
+		<button class="opcoesDoCartao-remove">Remover</button>
 	</div>
+	<p class="cartao-conteudo">
+		Lorem...
+	</p>
+</div>
 ```
 
 
 > aqui é interessante fazer um gráfico de árvore
 
-* * parentNode - Tag pai do elemento
+* parentNode - Tag pai do elemento
 * previousSibling - Tag irmã que veio antes do elemento
 * nextSibling - Tag irmã que veio depois do elemento
 * childNodes - Lista com todos os nós filhos
@@ -713,33 +702,32 @@ estrutura do página que estamos exibindo.
 * lastChild - Último nó filho do elemento
 
 ```javascript
-	var botoes = document.querySelectorAll(".opcoesDoCartao-remove");
+var botoes = document.querySelectorAll(".opcoesDoCartao-remove");
 
-	for(var i = 0; i < botoes.length; i++){
-		botoes[i].addEventListener("click", removeCartao);
-	}
-	function removeCartao(){
-		var botaoRemove = this;
-		this.remove() //não funciona
-		this.parentNode.parentNode.remove(); //aí sim funciona .... mas
-	}
+for(var i = 0; i < botoes.length; i++){
+	botoes[i].addEventListener("click", removeCartao);
+}
+function removeCartao(){
+	var botaoRemove = this;
+	this.remove() //não funciona
+	this.parentNode.parentNode.remove(); //aí sim funciona .... mas
+}
 ```
 > Entendendo o this -- http://blog.caelum.com.br/as-multiplas-personalidades-do-this-em-javascript/
 
 > Exemplo do entendendo o **this**
 
 ```javascript
-	var Pessoa = function (arg){
+var Pessoa = function (arg){
+	this.nome = arg;
+	console.log(this.nome);
+}
+Pessoa('rafa'); //rafa
+window.nome; // rafa
 
-    		this.nome = arg;
-    		console.log(this.nome);
-	}
-	Pessoa('rafa'); //rafa
-	window.nome; // rafa
-
-	//new
-	new Pessoa('rafa'); // rafa
-	window.nome; // undefined
+//new
+new Pessoa('rafa'); // rafa
+window.nome; // undefined
 ```
 
 
@@ -767,20 +755,20 @@ visível, já que, logo após a adição da classe, o cartão é removido.
 * vamos agendar uma função
 
 ``` javascript
-	function removeCartao(){
-		var botaoRemove = this;
-		var seletorCartao = "#cartao_" + botaoRemove.dataset.ref;
-		var cartao = document.querySelector(seletorCartao);
+function removeCartao(){
+	var botaoRemove = this;
+	var seletorCartao = "#cartao_" + botaoRemove.dataset.ref;
+	var cartao = document.querySelector(seletorCartao);
 
-		cartao.classList.add("cartao--some");
+	cartao.classList.add("cartao--some");
 
-		setTimeout(function(){
-			cartao.remove()
-		}, 170);
-	}
+	setTimeout(function(){
+		cartao.remove()
+	}, 170);
+}
 ```
 
-## **Exercício:** Removendo cartões com Data-Attributes
+## Exercício: Removendo cartões com Data-Attributes
 
 
 
@@ -788,6 +776,9 @@ visível, já que, logo após a adição da classe, o cartão é removido.
 # Capítulo 4 - JQuery
 
 > http://blog.caelum.com.br/boas-praticas-com-javascript-e-jquery-codigo-nao-obstrusivo/
+
+* Concorrentes
+	* Mootools, Dojo, Underscore
 
 ## formulário para adiconar novos TODO's
 
@@ -816,22 +807,16 @@ visível, já que, logo após a adição da classe, o cartão é removido.
 }
 
 ```javascript
-	$newCardForm[0].addEventListener('submit', function(e){
+$newCardForm[0].addEventListener('submit', function(e){
 
-		// explicar o preventDefault
-		e.preventDefault();
+	// explicar o preventDefault
+	e.preventDefault();
 
-		var $newCardContent = document.querySelector('.newCard-content');
+	var $newCardContent = document.querySelector('.newCard-content');
 
-		if(!$newCardContent.value){
+	if(!$newCardContent.value){
 
-			if(!document.querySelector('.error')){
-				var $error = document.createElement('span');
-				$error.classList.add('error');
-				$error.textContent = 'Preencha o campo acima!';
-				$newCardForm[0].insertBefore($error, $newCardAction[0]);
-			}
-		}else{
+		if(document.querySelector('.error')){
 
 			var $card = document.querySelector('.card');
 			$newCard = $card.cloneNode(true);
@@ -845,11 +830,11 @@ visível, já que, logo após a adição da classe, o cartão é removido.
 
 			$newCard.querySelector('.cartao-conteudo').textContent = $newCardContent.value;
 			document.querySelector('.wrap-card').insertBefore($newCard, $card);
-		}
+	}
 
-		//explicar o formReset
-		$newCardForm[0].reset();
-	});
+	//explicar o formReset
+	$newCardForm[0].reset();
+});
 ```
 
 * poderia ter clonado uma estrutura ja existente
@@ -903,7 +888,7 @@ desnecessário se colocar tag de script ao final
 ## adicionando novo cartão
 
 ```javascript
-	$(".novoCartao").submit(function(event){
+$(".novoCartao").submit(function(event){
 
 	//impede que a página recarregue
 	event.preventDefault();
@@ -972,26 +957,26 @@ $(".aviso").removeClass("invisivel");
 ### adicionando botão de remover no cartão recém criado
 
 ```javascript
-	//cria os elementos do cartão e adiciona no DOM
-	if(conteudo){
+//cria os elementos do cartão e adiciona no DOM
+if(conteudo){
 
-		//cria o botão de remover
-		var botaoRemove = $("<button>").addClass("opcoesDoCartao-remove")
-										.text("Remover")
-										.click(removeCartao);
-		//cria a div de opcoes
-		var opcoes = $("<div>").addClass("opcoesDoCartao")
-								.append(botaoRemove);
+	//cria o botão de remover
+	var botaoRemove = $("<button>").addClass("opcoesDoCartao-remove")
+									.text("Remover")
+									.click(removeCartao);
+	//cria a div de opcoes
+	var opcoes = $("<div>").addClass("opcoesDoCartao")
+							.append(botaoRemove);
 
-		var conteudoTag = $("<p>").addClass("cartao-conteudo")
-									.append(conteudo);
+	var conteudoTag = $("<p>").addClass("cartao-conteudo")
+								.append(conteudo);
 
-		//acrescenta o append para colocar a div opcoes no cartão
-		$("<div>").addClass("cartao")
-					.append(opcoes)
-					.append(conteudoTag)
-					.prependTo(".mural");
-	}
+	//acrescenta o append para colocar a div opcoes no cartão
+	$("<div>").addClass("cartao")
+				.append(opcoes)
+				.append(conteudoTag)
+				.prependTo(".mural");
+}
 ```
 
 * remover não funciona, precisa de ID
@@ -1039,11 +1024,11 @@ padrao.test(frase);
 
 
 ```javascript
-	// esse Event Listener já existe, fizemos ele no exercício anterior
-	$(".novoCartao").submit(function(event){
-		var conteudo = campoConteudo.val().trim()
-                                          .replace(/\n/g, "<br>");
-	});
+// esse Event Listener já existe, fizemos ele no exercício anterior
+$(".novoCartao").submit(function(event){
+	var conteudo = campoConteudo.val().trim()
+										.replace(/\n/g, "<br>");
+});
 ```
 
 ## **Exercício:** Cartões mais poderosos com Expressões Regulares
@@ -1083,27 +1068,27 @@ mas apenas a raiz, o `<html>`
 
 
 ``` css
-		@media (min-width: 560px){
+@media (min-width: 560px){
 
-			.cartao--textoPequeno {
-				font-size: 1em;
-				width: 11em;
-				flex-basis: 11em;
+	.cartao--textoPequeno {
+		font-size: 1em;
+		width: 11em;
+		flex-basis: 11em;
 
-			}
+	}
 
-			.cartao--textoMedio {
-				font-size: 1.5em;
-				width: 9em;
-				flex-basis: 9em;
-			}
+	.cartao--textoMedio {
+		font-size: 1.5em;
+		width: 9em;
+		flex-basis: 9em;
+	}
 
-			.cartao--textoGrande {
-				font-size: 2em;
-				width: 6em;
-				flex-basis: 6em;
-			}
-		}
+	.cartao--textoGrande {
+		font-size: 2em;
+		width: 6em;
+		flex-basis: 6em;
+	}
+}
 ```
 > http://blog.caelum.com.br/porque-usar-em-no-seu-css-hoje-em-dia/
 
@@ -1117,6 +1102,7 @@ a entender:
 * explicar o foreach
 
 > fazer o align-itens no w3schools
+
 > https://www.w3schools.com/cssref/tryit.asp?filename=trycss3_align-items
 
 
@@ -1139,36 +1125,36 @@ paises.forEach(p => console.log('p: '+ p));
 ``` javascript
 
 
-	//ao criar novo cartão
-	var tipoCartao = decideTipoCartao(conteudo);
-	//...
+//ao criar novo cartão
+var tipoCartao = decideTipoCartao(conteudo);
+//...
 
-	function decideTipoCartao(conteudo){
-		var quebras = conteudo.split("<br>").length;
+function decideTipoCartao(conteudo){
+	var quebras = conteudo.split("<br>").length;
 
-		var totalDeLetras = conteudo.replace(/<br>/g, " ").length;
+	var totalDeLetras = conteudo.replace(/<br>/g, " ").length;
 
-		var ultimoMaior = "";
-		conteudo.replace(/<br>/g, " ")
-				.split(" ")
-				.forEach(function(palavra){
-					if (palavra.length > ultimoMaior.length) {
-						ultimoMaior = palavra;
-					}
-				});
-		var tamMaior = ultimoMaior.length;
+	var ultimoMaior = "";
+	conteudo.replace(/<br>/g, " ")
+			.split(" ")
+			.forEach(function(palavra){
+				if (palavra.length > ultimoMaior.length) {
+					ultimoMaior = palavra;
+				}
+			});
+	var tamMaior = ultimoMaior.length;
 
-		//no mínimo, todo cartão tem o texto pequeno
-		var tipoCartao = "cartao--textoPequeno";
+	//no mínimo, todo cartão tem o texto pequeno
+	var tipoCartao = "cartao--textoPequeno";
 
-		if (tamMaior < 9 && quebras < 5 && totalDeLetras < 55) {
-			tipoCartao = "cartao--textoGrande";
-		} else if (tamMaior < 12 && quebras < 6 && totalDeLetras < 75) {
-			tipoCartao = "cartao--textoMedio";
-		}
-
-		return tipoCartao;
+	if (tamMaior < 9 && quebras < 5 && totalDeLetras < 55) {
+		tipoCartao = "cartao--textoGrande";
+	} else if (tamMaior < 12 && quebras < 6 && totalDeLetras < 75) {
+		tipoCartao = "cartao--textoMedio";
 	}
+
+	return tipoCartao;
+}
 ```
 
 
@@ -1199,12 +1185,12 @@ paises.forEach(p => console.log('p: '+ p));
 * precisamos parametrizar
 
 ``` javascript
-	var texto = "Conteudo do meu cartão";
-	var termoBuscado = "conteudo";
+var texto = "Conteudo do meu cartão";
+var termoBuscado = "conteudo";
 
-	var regex = new RegExp(termoBuscado, "i");
+var regex = new RegExp(termoBuscado, "i");
 
-	var temPalavraConteudo = texto.match(regex);
+var temPalavraConteudo = texto.match(regex);
 ```
 	* i == case insensitve
 
@@ -1214,30 +1200,26 @@ paises.forEach(p => console.log('p: '+ p));
  <input type="search" id="busca" placeholder="busca" class="opcoesDaPagina-opcao">
 ```
 ``` javascript
-	$("#busca").on("input", function(){
-		//guarda o valor digitado, removendo espaços extras.
-		var busca = $(this).val().trim();
+$("#busca").on("input", function(){
+	//guarda o valor digitado, removendo espaços extras.
+	var busca = $(this).val().trim();
 
-		if(busca.length){
+	if(busca.length){
 
-			//esconde todos os cartoes
-			//filtra apenas os cartoes que tem o conteudo
-			//mostra os cartoes
+		//esconde todos os cartoes
+		//filtra apenas os cartoes que tem o conteudo
+		//mostra os cartoes
 
-			$(".cartao").hide().filter(function(){
-				return $(this).find(".cartao-conteudo")
-								.text()
-								.match(new RegExp(busca, "i"));
-			}).show();
-		}else{
-			$(".cartao").show();
-		}
-	});
+		$(".cartao").hide().filter(function(){
+			return $(this).find(".cartao-conteudo")
+							.text()
+							.match(new RegExp(busca, "i"));
+		}).show();
+	}else{
+		$(".cartao").show();
+	}
+});
 ```
-
-
-
-
 
 # Capítulo 6 - Ajax
 
@@ -1246,39 +1228,39 @@ paises.forEach(p => console.log('p: '+ p));
 
 * chamada básica
 
-		``` javascript
-		$.ajax({
-		  url: "http://www.servidor.com/servico",
-		  success: function (data, textStatus, jqXHR) {
-		    // a resposta da requisição pode ser acessada pelo objeto "data"
-		  }
-		});
-		```
+``` javascript
+$.ajax({
+	url: "http://www.servidor.com/servico",
+	success: function (data, textStatus, jqXHR) {
+	// a resposta da requisição pode ser acessada pelo objeto "data"
+	}
+});
+```
 
 * passando parâmetros
 
-		``` javascript
-		$.ajax({
-		  url: "http://www.servidor.com/servico",
-		  data: {
-		    "busca": "evento caelum"
-		  },
-		  success: function (data, textStatus, jqXHR) {
-		    // callback
-		  }
-		});
-
+``` javascript
+$.ajax({
+	url: "http://www.servidor.com/servico",
+	data: {
+	"busca": "evento caelum"
+	},
+	success: function (data, textStatus, jqXHR) {
+	// callback
+	}
+});
+```
 
 
 * dataType: "xml",
 
 
 * error
-		``` javascript
-			$.ajax( ......... ).fail(function(xhr){
-			  console.log("erro( " + xhr.status + "):" + xhr.responseText);
-			});
-		```
+``` javascript
+$.ajax( ......... ).fail(function(xhr){
+	console.log("erro( " + xhr.status + "):" + xhr.responseText);
+});
+```
 
 
 
@@ -1287,17 +1269,60 @@ paises.forEach(p => console.log('p: '+ p));
 
 		Para os alunos entenderem que JSON é apenas texto, e ainda não é um objeto:
 
-		```
-		var textoProduto = "{"preco": 100, "descricao": "Cardigan"}";
-		var objetoProduto = JSON.parse(textoProduto);
+```javascript
+var textoProduto = "{"preco": 100, "descricao": "Cardigan"}";
+var objetoProduto = JSON.parse(textoProduto);
 
-		console.log(objetoProduto.preco);
-		console.log(objetoProduto.descricao);
-		```
-
-		(Vitor Mattos)
+console.log(objetoProduto.preco);
+console.log(objetoProduto.descricao);
+```
 
 
+> **Google Chrome e acesso a arquivos locais**
+>
+> O Google Chrome não permite requisições AJAX localmente por questões de segurança. Para permitir que uma página local chame outra utilizando AJAX no Chrome é necessário
+> iniciar o navegador pela linha de comando passando parâmetros especiais:
+>
+> *Linux: google-chrome --allow-file-access-from-files
+> *Mac: open /Applications/Google\ Chrome.app --args --allow-file-access-from-files
+
+
+
+
+
+* getJSon
+
+``` javascript
+$.getJSON("http://www.servidor.com/servico", function(retorno) {
+
+});
+```
+
+
+
+* colocando o button ?
+
+``` html
+	<button id="ajuda" class="opcoesDaPagina-opcao
+	opcoesDaPagina-botao">?</button>
+```
+
+``` javascript
+$("#ajuda").click(function(){
+	$.getJSON("https://ceep.herokuapp.com/cartoes/instrucoes",
+		function(res){
+			res.instrucoes.forEach(function(instrucao){
+				adicionaCartao(instrucao.conteudo, instrucao.cor);
+			});
+		}
+	);
+});
+```
+
+
+## **exercício** Pegando instruções com Ajax em JSON
+
+<hr/>
 
 
 
@@ -1316,128 +1341,74 @@ paises.forEach(p => console.log('p: '+ p));
 	* mostrar os headers
 
 
+* Código para salvar cartoes
 
-> **Google Chrome e acesso a arquivos locais**
->
-> O Google Chrome não permite requisições AJAX localmente por questões de segurança. Para permitir que uma página local chame outra utilizando AJAX no Chrome é necessário
-> iniciar o navegador pela linha de comando passando parâmetros especiais:
->
-> *Linux: google-chrome --allow-file-access-from-files
-> *Mac: open /Applications/Google\ Chrome.app --args --allow-file-access-from-files
+``` javascript
+$("#sync").click(function(){
 
+	var cartoes = [];
 
+	//salvando os cartões
+	$(".cartao").each(function(){
+		var cartao= {};
+		cartao.conteudo = $(this).find(".cartao-conteudo").html();
+		cartoes.push(cartao);
+	});
 
+	//escolha seu nome de usuario aqui
+	var mural = {
+		usuario: "seu.email@exemplo.com.br"
+		,cartoes: cartoes
+	}
 
-
-* getJSon
-
-		``` javascript
-		$.getJSON("http://www.servidor.com/servico", function(retorno) {
-
-		});
-		```
-
-
-
-* colocando o button ?
-
-		``` html
-			<button id="ajuda" class="opcoesDaPagina-opcao
-			opcoesDaPagina-botao">?</button>
-		```
-
-* 	``` javascript
-				$("#ajuda").click(function(){
-					$.getJSON("https://ceep.herokuapp.com/cartoes/instrucoes",
-						function(res){
-							console.log(res);
-						}
-					);
-				});
-	```
-
-
-## **exercício** Pegando instruções com Ajax em JSON
-
-			``` html
-				<button
-				 id="sync"
-				 class="opcoesDaPagina-opcao opcoesDaPagina-botao botaoSync"
-				>
-					<!-- Aqui o código do arquivo svg -->
-			</button>
-			```
-
-
-			``` javascript
-		$("#sync").click(function(){
-
-			var cartoes = [];
-
-			$(".cartao").each(function(){
-				var cartao= {};
-				cartao.conteudo = $(this).find(".cartao-conteudo").html();
-				cartoes.push(cartao);
-			});
-
-			//escolha seu nome de usuario aqui
-			var mural = {
-				 usuario: "seu.email@exemplo.com.br"
-				,cartoes: cartoes
-			}
-
-			$.ajax({
-				 url: "https://ceep.herokuapp.com/cartoes/salvar"
-				,method: "POST"
-				,data: mural
-				,success: function(res){
-					console.log(res.quantidade + " cartões salvos em "
-					+ res.usuario);
-				}
-				,error: function(){
-					console.log("Não foi possível salvar o mural");
-				}
-			});
-		});
-	```
+	$.ajax({
+			url: "https://ceep.herokuapp.com/cartoes/salvar"
+		,method: "POST"
+		,data: mural
+		,success: function(res){
+			console.log(res.quantidade + " cartões salvos em "
+			+ res.usuario);
+		}
+		,error: function(){
+			console.log("Não foi possível salvar o mural");
+		}
+	});
+});
+```
 
 ## **exercício** Salvando os Cartões com AJAX
 
+<hr/>
+
+* nem sempr eo browser vai entender o HEADER allow-origin
+* explicar o conceito de proxy e proxy reverso
+* explicar JSONP - (JSON with Padding)
+
+```javascript
+qualquerFuncao({
+	local: "Caelum",
+	horaInicial: "19:00",
+	horaFinal: "23:00"
+})
 
 
-	* nem sempr eo browser vai entender o HEADER allow-origin
-	* explicar o conceito de proxy e proxy reverso
-	* explicar JSONP - (JSON with Padding)
-		 ``` javascript
-			qualquerFuncao({
-			  local: "Caelum",
-			  horaInicial: "19:00",
-			  horaFinal: "23:00"
-			})
-			```
-	*
-		``` javascript
-		$.getJSON("http://servidor.com.br/servico?callback=nomeFuncao",
-		    function(retorno) {
+$.getJSON("http://servidor.com.br/servico?callback=nomeFuncao",
+	function(retorno) {});
 
+var usuario = "seu.email@exemplo.com.br";
+
+$.getJSON(
+	"https://ceep.herokuapp.com/cartoes/carregar?callback=?",
+	{usuario: usuario},
+	function(res){
+		var cartoes = res.cartoes;
+		console.log(cartoes.length + " carregados em " + res.usuario);
+		cartoes.forEach(function(cartao){
+			adicionaCartao(cartao.conteudo);
 		});
-
-
-		``` javascript
-			var usuario = "seu.email@exemplo.com.br";
-
-			$.getJSON(
-				"https://ceep.herokuapp.com/cartoes/carregar?callback=?",
-				{usuario: usuario},
-				function(res){
-					var cartoes = res.cartoes;
-					console.log(cartoes.length + " carregados em " + res.usuario);
-					cartoes.forEach(function(cartao){
-						adicionaCartao(cartao.conteudo);
-					});
-				}
-			);
-	```
+	}
+);
+```
 
 ## **Exercício** Carregando o mural quando a página carrega
 
@@ -1445,28 +1416,30 @@ paises.forEach(p => console.log('p: '+ p));
 
 > http://blog.caelum.com.br/conhecendo-o-operator-new-e-os-prototipos-no-javascript/
 
-
-
 * escopo das variáveis
 	* A linguagem JS só tem dois escopos possíveis: o global que vimos e o escopo de função. Ou a variável é acessível por todos, ou ela é uma variável local de função.
 
-			``` javascript
-				function executa() {
-					var usuario = "seu.email@exemplo.com.br";
-					$.getJSON(...);
-				}
-			```
+``` javascript
+function executa() {
+	var usuario = "seu.email@exemplo.com.br";
+	$.getJSON(...);
+}
+```
 
 * Claro que só criar a função não é suficiente. Afinal ela precisa ser chamada com `executa();` para rodar o código. Isso deixa escancarado outro problema: o nome da função é o nosso novo global.
 
 * poderíamos deixá-la anônima para não dar conflitos
 
-			``` javascript
-				function() {
-					var usuario = "seu.email@exemplo.com.br";
-					$.getJSON(...);
-				}
-			```
+``` javascript
+function() {
+	var usuario = "seu.email@exemplo.com.br";
+	$.getJSON(...);
+}
+```
+
+> explicar o porquê devemos colocar var
+			
+	criar o executa sem declarar o var
 
 * Como vamos chamá-la?
 * podemos chamá-la logo depois q ela foi criada - IIFE
@@ -1474,37 +1447,19 @@ paises.forEach(p => console.log('p: '+ p));
 > http://benalman.com/news/2010/11/immediately-invoked-function-expression/
 
 
-			``` javascript
-				(function() {
-					var usuario = "seu.email@exemplo.com.br";
-					$.getJSON(...);
-				})();
-			```
+``` javascript
+(function() {
+	var usuario = "seu.email@exemplo.com.br";
+	$.getJSON(...);
+})();
+```
 
 
 ## **Exercício:** Protegendo o nome de usuário com uma IIFE
 
+<hr/>
 
-			``` javascript
-				(function(){
-					var usuario = "seu.email@exemplo.com.br";
-
-					$.getJSON(
-						//aqui o código de carregar os cartoes, que fizemos anteriormente
-					);
-
-					$("#sync").click(function(){
-						//aqui o código de salvar no servidor, que fizemos anteriormente
-					}
-				})()
-			```
-
-> Dica: entendendo o operador new --> http://blog.caelum.com.br/conhecendo-o-operator-new-e-os-prototipos-no-javascript/
-	* cuidado: esquecer do new --> var p = Pessoa(), serão criadas as variáveis nome e email em window!
-
-
-## Organizando os arquivos
-
+### Organização de arquivos
 
 * principal.js esta todo zuado
 * funcionalidades atuais
@@ -1523,7 +1478,9 @@ se usarmos o HTTP/1.1 clássico.
 * Falar do HTTP 2.0
 
 > http://blog.caelum.com.br/o-que-muda-nas-praticas-de-otimizacoes-de-performance-na-web-com-o-http-2-0-e-o-spdy/
+>
 > http://blog.caelum.com.br/as-fantasticas-novidades-do-http-2-0-e-do-spdy/
+>
 > http://blog.caelum.com.br/http2-server-push-na-pratica/
 
 
@@ -1536,87 +1493,85 @@ se usarmos o HTTP/1.1 clássico.
 
 * Módulos em JavaScript.
 
+``` javascript
+(function(){
+	var usuario = "seu.email@exemplo.com.br";
 
-			``` javascript
-			(function(){
-				var usuario = "seu.email@exemplo.com.br";
+	$.getJSON(...);
 
-				$.getJSON(...);
+	function descartaUsuario() {
+		usuario = undefined;
+	}
 
-				function descartaUsuario() {
-					usuario = undefined;
-				}
-
-			})()
-			```
+})()
+```
 
 * A nova função descartaUsuario faz exatamente o que queremos. Mas ela está dentro da IIFE. Isso quer dizer que só lá dentro vamos enxergá-la. Apenas código da IIFE pode chamar a função nova.
 
 
 * retornando o que vc quer expor
 
-			``` javascript
-			var descartaUsuario = (function(){
-				var usuario = "seu.email@exemplo.com.br";
+``` javascript
+var descartaUsuario = (function(){
+	var usuario = "seu.email@exemplo.com.br";
 
-				$.getJSON(...);
+	$.getJSON(...);
 
-				function descartaUsuario() {
-					usuario = undefined;
-				}
+	function descartaUsuario() {
+		usuario = undefined;
+	}
 
-				return descartaUsuario;
-			})();
-			```
+	return descartaUsuario;
+})();
+```
 
 *  Essa variável (por acaso com mesmo nome, mas não precisaria) está no escopo global. Isso quer dizer que qualquer parte do programa pode chamá-la.
 	* **expor aquilo que realmente é necessário**
 
 
-
 * vamos encapsular a funcionalidade de adicionar cartao
 
-		``` javascript
-			var adicionaCartao = (function(){
+``` javascript
+var adicionaCartao = (function(){
 
-				function removeCartao(conteudo){
-					//... aqui, código que fizemos em aulas anteriores
-				}
+	function removeCartao(conteudo){
+		//... aqui, código que fizemos em aulas anteriores
+	}
 
-				function decideTipoCartao(conteudo){
-					//... aqui, código que fizemos em aulas anteriores
-				}
+	function decideTipoCartao(conteudo){
+		//... aqui, código que fizemos em aulas anteriores
+	}
 
-				var contador = 0;
+	var contador = 0;
 
-				return function(conteudo, cor){
-					contador++;
+	return function(conteudo, cor){
+		contador++;
 
-					var botaoRemove = $("<button>").addClass("opcoesDoCartao-remove")
-												   .attr("data-ref", contador)
-											   .text("Remover")
-											   .click(removeCartao);
+		var botaoRemove = $("<button>").addClass("opcoesDoCartao-remove")
+										.attr("data-ref", contador)
+									.text("Remover")
+									.click(removeCartao);
 
-					var opcoes = $("<div>").addClass("opcoesDoCartao")
-										   .append(botaoRemove);
+		var opcoes = $("<div>").addClass("opcoesDoCartao")
+								.append(botaoRemove);
 
-					var tipoCartao = decideTipoCartao(conteudo);
+		var tipoCartao = decideTipoCartao(conteudo);
 
-					var conteudoTag = $("<p>").addClass("cartao-conteudo")
-							          .append(conteudo);
+		var conteudoTag = $("<p>").addClass("cartao-conteudo")
+							.append(conteudo);
 
-					$("<div>").attr("id","cartao_" + contador)
-							  .addClass("cartao")
-							  .addClass(tipoCartao)
-							  .append(opcoes)
-							  .append(conteudoTag)
-							  .css("background-color", cor)
-							  .prependTo(".mural");
+		$("<div>").attr("id","cartao_" + contador)
+					.addClass("cartao")
+					.addClass(tipoCartao)
+					.append(opcoes)
+					.append(conteudoTag)
+					.css("background-color", cor)
+					.prependTo(".mural");
 
-				}
+	}
 
-			})();
-			```
+})();
+```
 
 ## **Exercício:** Adição e criação de cartões com módulos
 
@@ -1626,83 +1581,81 @@ se usarmos o HTTP/1.1 clássico.
 * Imagine que queremos mais comportamentos. Além de `descartaUsuario`, agora queremos
 também um `atualizaDados` que faz uma chamada JSON para pegar dados mais atuais do usuário.
 
-			``` javascript
-			var ??? = (function(){
-				var usuario = "seu.email@exemplo.com.br";
+``` javascript
+var ??? = (function(){
+	var usuario = "seu.email@exemplo.com.br";
 
-				$.getJSON(...);
+	$.getJSON(...);
 
-				function descartaUsuario() {
-					usuario = undefined;
-				}
+	function descartaUsuario() {
+		usuario = undefined;
+	}
 
-				function atualizaDados() {
-					// chama JSON de usuário
-				}
+	function atualizaDados() {
+		// chama JSON de usuário
+	}
 
-				return ???;
-			})();
-			```
+	return ???;
+})();
+```
 
 ### Agrupando funções num objeto
 
 * Ao invés de devolver uma única função, podemos devolver um simples objeto JavaScript
 
+``` javascript
+var moduloUsuario = (function(){
+	var usuario = "seu.email@exemplo.com.br";
 
+	$.getJSON(...);
 
+	function descartaUsuario() {
+		usuario = undefined;
+	}
 
-			``` javascript
-			var moduloUsuario = (function(){
-				var usuario = "seu.email@exemplo.com.br";
+	function atualizaDados() {
+		// chama JSON de usuário
+	}
 
-				$.getJSON(...);
-
-				function descartaUsuario() {
-					usuario = undefined;
-				}
-
-				function atualizaDados() {
-					// chama JSON de usuário
-				}
-
-				return {
-					descarta: descartaUsuario,
-					atualizaDados: atualizaDados
-				};
-			})();
-			```
+	return {
+		descarta: descartaUsuario,
+		atualizaDados: atualizaDados
+	};
+})();
+```
 
 
 * Fazendo a controladora de cartões
 
-				``` javascript
-					var controladorDeCartoes = (function(){
+``` javascript
+var controladorDeCartoes = (function(){
 
-						//... aqui, código de exercícios anteriores
+	//... aqui, código de exercícios anteriores
 
-						var contador = 0;
+	var contador = 0;
 
-						function adicionaCartao(conteudo, cor){
-							//... lógica do adicionaCartao
-						}
+	function adicionaCartao(conteudo, cor){
+		//... lógica do adicionaCartao
+	}
 
-						return {
-							adicionaCartao: adicionaCartao
-							,idUltimoCartao: function(){
-								return contador;
-							}
-						}
+	return {
+		adicionaCartao: adicionaCartao
+		,idUltimoCartao: function(){
+			return contador;
+		}
+	}
 
-					})();
-				```
+})();
 
 
-				```
-					controladorDeCartoes.adicionaCartao(conteudo);
-				```
+controladorDeCartoes.adicionaCartao(conteudo);
+```
 
 ## **Exercício** Organizando nosso módulo com objetos
 
+<hr/>
+
+### Dependências com IIFE
 
 * adicionaCartao is not defined. O que pode acontecer para o javascript falar pra gente que não existe uma função chamada adicionaCartao?
 
@@ -1710,28 +1663,28 @@ também um `atualizaDados` que faz uma chamada JSON para pegar dados mais atuais
 * a IIFE do novoCartao.js depende de um objeto externo, o objeto controladorDeCartao.
 
 
-				``` javascript
-				(function(controlador){
+```javascript
+(function(controlador){
 
-					$(".novoCartao").submit(function(event){
+$(".novoCartao").submit(function(event){
 
-						var campoConteudo = $(".novoCartao-conteudo");
+	var campoConteudo = $(".novoCartao-conteudo");
 
-						var conteudo = campoConteudo.val()
-									    .trim()
-									    .replace(/\n/g, "<br>");
+	var conteudo = campoConteudo.val()
+					.trim()
+					.replace(/\n/g, "<br>");
 
-						if(conteudo){
-							controlador.adicionaCartao(conteudo);
-						}
+	if(conteudo){
+		controlador.adicionaCartao(conteudo);
+	}
 
-						campoConteudo.val("");
+	campoConteudo.val("");
 
-						event.preventDefault();
+	event.preventDefault();
 
-					});
-				})(controladorDeCartoes);
-				```
+});
+})(controladorDeCartoes);
+```
 
 
 * Vantagens
@@ -1754,39 +1707,38 @@ As principais proibições deste modo são:
 * funções com parâmetros duplicados
 
 
-				``` javascript
-				(function(){
-				  "use strict";
+``` javascript
+(function(){
+	"use strict";
 
-				  // código omitido
+	// código omitido
 
-				})();
-				```
+})();
+```
 
 
-* fazer este exemplo aí
+		fazer este exemplo aí
 
-				``` javascript
-				function teste(){
-				  user = "rafa";
-				};
-				user;
-				teste();
-				user; // criou global
-				```
-
-## Exercício: Dependências com IIFE
-
+```javascript
+function teste(){
+	user = "rafa";
+};
+user;
+teste();
+user; // criou global
+```
 
 * Dê uma olhadas em suas IIFE's identifique as dependências e passe elas como parâmetro. Além do `controladorDeCartoes` existe mais algum javascript que tem que ser lido antes dos nossos?
 
-> Ver com o alexandre quais são as dependencias
 
 > http://blog.caelum.com.br/organize-seu-codigo-javascript-de-maneira-facil/
 >
 > http://blog.caelum.com.br/criacao-de-objetos-em-javascript/
 
 
+## Exercício: Dependências com IIFE
+
+## Exercício: JavaScript mais restrito com use strict
 
 # Capítulo 8 - Eventos
 
@@ -1804,10 +1756,10 @@ As principais proibições deste modo são:
 	* que, além da sincronização, seja mostrado um spinner pro usuário, que o formulário de adição seja desabilitado e que um log seja feito. Onde adicionar esses comportamentos?
 
 * vamos espalhar as chamadas dessas funções?
-	mostraSpinner();
-	desabilitaFormulario();
-	logDeSincronizacao();
-	sincroniza();
+	* mostraSpinner();
+	* desabilitaFormulario();
+	* logDeSincronizacao();
+	* sincroniza();
 
 * Repare que já tivemos o trabalho de colocar cada lógica numa função separada, mas ainda temos que chamar todas elas em todos os lugares. Não é uma boa ideia e vamos esquecer alguma.
 
@@ -1818,25 +1770,31 @@ As principais proibições deste modo são:
 * programacao orientada a eventos
 
 
+``` javascript
 
+$(document).trigger("precisaSincronizar");
 
+$(document).on("precisaSincronizar", function(event) {
+// posso fazer o ajax
+});
 
-		``` javascript
-
-		$(document).trigger("precisaSincronizar");
-
-		$(document).on("precisaSincronizar", function(event) {
-		   // posso fazer o ajax
-		});
-
-		$(document).on("precisaSincronizar", function(event) {
-		  // e eu posso fazer o spinner
-		});
-		```
+$(document).on("precisaSincronizar", function(event) {
+// e eu posso fazer o spinner
+});
+```
 
 > falar do meu artigo no blog da caelum sobre Observer Pattern
+>
+>http://blog.caelum.com.br/usando-o-padrao-observer-do-cdi-para-lidar-com-o-kafka/
+>
+>http://blog.caelum.com.br/diminua-suas-dependencias-com-os-eventos-do-cdi/
+
 
 ## Exercício: Melhorando a sincronização com Eventos Customizados
+
+<hr/>
+
+### ContentEditable
 
 * eventos JS
 * tabindex
