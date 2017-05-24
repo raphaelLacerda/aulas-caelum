@@ -1,0 +1,138 @@
+//------------------------------------------CRIAR VARIAÇÕES DO FOREACH ------------------------/
+Consumer<Lutador> consumer = new Consumer<Lutador>() {
+
+	    @Override
+	    public void accept(Lutador t) {
+			System.out.println(t);
+	    }
+
+	};
+
+	Consumer<Lutador> consumer2 = (Lutador l) -> {
+	    System.out.println(l.getNome());
+	};
+
+	lutadores.forEach(consumer);
+	lutadores.forEach(consumer2);
+	lutadores.forEach(l -> System.out.println(l));
+
+	lutadores.forEach(consumer.andThen(consumer2));	
+
+ ------------ explicar o MethodReference - também é traduzido para uma interface funcional
+	
+	lutadores.forEach(System.out::println);
+
+//------------------------------------------NOVA THREAD PARA COLETAR URINA DOS LUTADORES (control1)----------------/
+1.1 - criar a lambda da thread -> coletarUrinaDosLutadores
+
+new Thread(() -> coletarUrina(lutadores)).start();
+
+private static void coletarUrina(List<Lutador> lutadores) {
+	
+	    lutadores.forEach(l -> l.fornecerUrinaParaExameAntiDoping());
+		lutadores.forEach(Lutador::fornecerUrinaParaExameAntiDoping);		
+		lutadores.forEach(System.out::println;)
+    }
+ }
+
+
+//------------------------------------------REMOVER DA LISTA O APOSENTADO ------------------------/
+
+//	lesnar.aposentar();
+//	lutadores.removeIf(l -> l.isAposentado());
+//	lutadores.forEach(System.out::println);
+
+
+
+//------------------------------------------EXPLICAR O @FUCTIONALINTERFACE ------------------------/
+
+2.1 - Anotar AntiDoping com @FunctionalInterface
+2.2 - Escrever um novo método lá, vai ver q dá merda	
+2.3 - evoluir a interface
+
+
+		default long quantidadeDeDiasSemFazerExame() {
+
+		return 0;
+	}
+
+	ChronoUnit.DAYS.between
+
+System.out.println(ChronoUnit.DAYS.between(LocalDateTime.of(2014, 11, 11, 1, 1, 1),
+LocalDateTime.of(2014, 11, 12, 4, 1, 1)));
+	
+//------------------------------------------ORDENAR ELEMENTOS POR NOME ------------------------/
+	
+4 - Ordenar elementos por comparator
+
+Falar de como era o jeito antigo -> Comparable ou Comparator
+
+		
+		lutadores.sort((l1, l2) -> l1.getNome().compareTo(l2.getNome()));
+		lutadores.sort(Comparator.comparing(l -> l.getNome()));
+		lutadores.sort(Comparator.comparing(Lutador::getNome));
+
+
+5 - Stream
+
+Nao produzem efeitos colaterais
+Evitar poluir a interface collection
+Nunca guarda dados
+O Conjunto de operações encadeadas formam um pipeline
+
+
+	//------------------------------------------LUTADORES COM ALTURA MAIOR QUE ------------------------/
+
+	lutadores.stream().filter(l -> l.getAltura() > altura).forEach(System.out::println);
+    }	
+
+
+//------------------------------------------LUTADOR MAIS VELHO / altura ------------------------/
+	
+	Lutador lutador = lutadores.stream()
+		.max(Comparator.comparing(Lutador::getDataDeNascimento).thenComparing(Lutador::getAltura).reversed())
+		.get();
+
+
+ //------------------------------------------APOSENTAR QUEM TEM MAIS DE 5 derrotas ------------------------/
+	
+	lutadores.stream().filter(u -> u.getDerrotas() >= 5).forEach(Lutador::aposentar);
+	//imprimir todos
+
+	lutadores.stream().filter(u -> u.getDerrotas() >= 5).peek(Lutador::aposentar).forEach(System.out::println);
+	//imprime apenas os dois
+
+
+-----------------Como eu faço para retornar a lista?
+
+	List<Lutador> collect = lutadores.stream().filter(u -> u.getDerrotas() >= 5).peek(Lutador::aposentar)
+		.collect(Collectors.toList());
+
+
+Salientar que eles nao alteram a list original
+
+
+
+
+
+//------------------------------------------EXTRAIR OS NOMES DA LISTA ------------------------/
+lutadores.stream().map(Lutador::getNome).forEach(System.out::println);
+
+//---------------------------------------Qual será a média de idade dos lutadores????--------------
+
+lutadores.forEach(l -> System.out.println(l.getIdade()));    // Como calcular a idade
+    
+    public int getIdade() {
+		return Period.between(dataDeNascimento, LocalDate.now()).getYears();
+    }
+	
+
+	System.out.println(lutadores.stream().mapToDouble(Lutador::getIdade).average());
+
+
+	Mas e se a lista viesse vazia??? mais um uso do Optional
+
+	lutadores.clear();
+	System.out.println(lutadores.stream().mapToDouble(Lutador::getIdade).average().orElse(0.0));
+
+	sem chamar o orEle e ao chamar o get dá merda

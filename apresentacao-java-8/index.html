@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Java 8 - Lambda Lambda Lambda - by Raphael Lacerda - @lacerdaph</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/sky.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+		<script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<!-- <section data-state="nerds"> -->
+				<section data-background="img/nerds1.jpg">
+					<header><h1 class="titulo1">Java 8</h1></header>
+					<p>&nbsp;</p>
+					<p>&nbsp;</p>
+					<p>&nbsp;</p>
+					<p>&nbsp;</p>
+					
+					<h3 class="titulo">Lambda Lambda Lambda!!!</h3>
+					<p class="titulo">O presente e futuro da plataforma</p>
+					<p>
+						<class="titulo">By <a href="http://">Raphael Lacerda</a> / <a href="http://twitter.com/lacerdaph">@lacerdaph</a>
+					</p>
+					<aside class="notes">
+						Apertar o S.
+						Lembrar de se apresentar.
+
+					</aside>
+				</section>
+
+				<section data-state="alert" data-background="red">
+					<h1>Disclaimer</h1>
+					<aside class="notes">
+						Falar aqui que a ideia nao é discutir tradeoffs
+						Nao é avaliar se faz sentido ou nao
+						É apenas mostrar novas features
+						Piada Stutz
+					</aside>
+				</section>
+
+				<section data-background="img/change.jpeg">
+				<!-- <section data-state="change2"> -->
+					<aside class="notes">
+						Aqui preciso falar um pouco da analogia
+						As mudanças do Java 5 para o 6 está para as mudanças do 6 pro 7
+						Assim como as mudanças do 4 pro 5 estão para o 7 pro 8
+					</aside>
+				</section>
+
+
+				<section>
+					<blockquote>
+						&ldquo;Throughout its history, Java has been essentially defined by its type system. It is central to the language and has maintained a strict adherence to nominative typing. From a practical point of view, the Java type system did not change much between Java 5 and Java 7.&rdquo;
+					</blockquote>
+					<blockquote>
+						&ldquo;
+						this small subset of the power of functional languages may well be all that most developers actually need for their day-to-day development
+						&rdquo;
+					</blockquote>			
+					
+					<p><small>http://www.infoq.com/articles/How-Functional-is-Java-8</small></p>
+				</section>
+				<section>
+					<h2>Datas</h2>
+					<p>Date? Calendar?</p>
+					<p class="fragment highlight-red">JodaTime</p>
+					<div class="fragment roll-in">
+					<p>
+						JSR - 310
+					</p>
+					<img src="img/javatime.png" width="125px">
+					
+					<aside class="notes">
+						Problemas da Date: depreciado, internacionalizacao
+						Calendar, ok.. mas tbm era mutável
+						Problemas para calcular
+					</aside>
+				</section>
+
+				<section data-transition="zoom">
+					<h2>java.time</h2>
+					<pre><code data-trim contenteditable style="font-size: 25px !important; width: 100% !important;">
+
+Instant inicio = Instant.now();//2014-05-27T12:41:47.670Z
+/*doSomething*/
+Instant fim = Instant.now();//2014-05-27T12:41:47.788Z
+Duration.between(inicio, fim).toMillis();//118
+					</code></pre>
+					<hr>
+						<pre class="fragment roll-in"><code data-trim contenteditable style="font-size: 25px !important; width: 100% !important;">
+
+LocalDate.now();//2014-05-27
+LocalDateTime.now();//2014-05-27T09:41:47.887
+LocalTime.now();//09:41:47.888
+DateTimeFormatter.ofPattern("dd/MM/yyyy").format(LocalDate.now());
+/*27-05-2014*/
+DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)
+.withLocale(new Locale("pt", "br")).format(LocalDate.now()
+/*27/05/2014*/
+					</code></pre>
+
+					<hr>
+						<pre class="fragment roll-in"><code data-trim contenteditable style="font-size: 25px !important; width: 100% !important;">
+
+LocalDate.of(2014, 1, 30); // 1 = janeiro
+new GregorianCalendar(2014, 1, 30).getTime(); 
+/*Sun Mar 02 00:00:00 BRT 2014*/
+LocalDate copaDe70 = LocalDate.of(1970, Month.JUNE, 21);
+LocalDate copaDe94 = LocalDate.of(1994, Month.JULY, 17);
+Period period = Period.between(copaDe70, copaDe94);
+period.getYears();
+period.getMonths();
+period.getDays();
+/*8 anos 0 meses e 26 dias */
+
+					</code></pre>
+					<aside class="notes">
+						3 - Humanos -  em anos, meses, dias, semanas, horas, minutos, segundos
+						4 - Customização de calendário, 13 meses, fuso horário 
+						5 - Period - ano bisextos
+					</aside>
+				</section>
+
+				<section>
+					<h2>Optional</h2>
+					<p>Devo ou não retornar null?</p>
+
+					<img src="img/joshua.jpg" alt=""> - <img src="img/robert.jpg" alt="">
+					<aside class="notes">
+						Falar de como os dois tratam o retorno desses objetos
+					</aside>
+
+				</section>
+
+				<section>
+<q cite="http://blog.bielu.com/2008/12/null-object-design-pattern.html">
+						&ldquo;Null Objects Design Patterns&rdquo;</q>					
+					<pre><code data-trim contenteditable style="font-size: 25px !important; width: 100% !important;">
+//Bloch
+public List returnCollection() {
+  //remainder omitted
+  if (/*some condition*/) {
+    //return null;
+    return Collections.emptyList();//use instead
+  } else {
+    // return collection
+  }
+}
+
+					</code></pre>
+
+					<pre><code data-trim contenteditable style="font-size: 25px !important; width: 100% !important;">
+//Martin - NullObjects
+public User getUser() {
+  if (/*some condition*/) {
+    return user;
+  } else {
+    //return null;
+    return NullUser.getInstance(); //use instead  
+  }
+}
+
+					</code></pre>
+<pre><code data-trim contenteditable style="font-size: 25px !important; width: 100% !important;">
+if (obj.getUser() != null && obj.getUser().isAuthenticated() {  
+}  
+					</code></pre>
+
+				</section>
+
+
+				<section>
+					Solução proposta					
+					<pre><code data-trim contenteditable style="font-size: 25px !important; width: 100% !important;">
+
+public class NullUser extends User {  
+    
+  public static final NullUser INSTANCE = new NullUser();  
+  
+  public static NullUser getInstance() {  
+    return INSTANCE;  
+  }  
+  
+  @Override  
+  public boolean isAuthenticated() {  
+    return false;  
+  }  
+  
+  private NullUser() {  
+  }  
+} 
+					</code></pre>
+<pre><code data-trim contenteditable style="font-size: 25px !important; width: 100% !important;">
+if (obj.getUser().isAuthenticated() {  
+  //allow  
+}   
+					</code></pre>
+
+				</section>
+
+				<section>
+					Solução Java 8
+					<pre><code data-trim contenteditable style="font-size: 25px !important; width: 100% !important;">
+
+public Optional&#60User&#62 getUser() {
+  if (/*some condition*/) {
+    return Optional.of(user);
+  } else {
+    return Optional.empty();
+  }
+}
+
+
+					</code></pre>
+
+					<pre><code data-trim contenteditable style="font-size: 25px !important; width: 100% !important;">
+
+Optional&#60T&#62 min(Comparator&#60? super T&#62 comparator);
+Optional&#60T&#62 max(Comparator&#60? super T&#62 comparator);
+Optional&#60T&#62 reduce(BinaryOperator&#60T&#62 accumulator);
+
+					</code></pre>
+
+				</section>
+
+
+				<section data-background="img/france.jpg" style="top: -400px!important;">
+					<header><h1 class="meuCabecalho">Collection since 1998</h1></header>
+
+					<h4 class="meuCabecalho2 fragment">Como superar?</h4>
+					<aside class="notes">
+						Aqui preciso falar que a API de Collection é antiga, mas como evoluir?
+						Como ser mais O.O?
+						Collections -> tenso
+					</aside>
+				</section>
+
+				
+				<section>
+						<h3>Virtual Extension Methods</h3>
+						<h4>Stream</h4>
+						java.util.function
+						<hr>
+						Como melhorar este código?
+						<pre><code data-trim contenteditable style="font-size: 25px !important; width: 100% !important;">
+
+Collections.sort(lutadores, 
+  Collections.reverseOrder(new Comparator&#60Lutador&#62() {
+  @Override
+  public int compare(Lutador o1, Lutador o2) {
+   return o1.getNome().compareTo(o2.getNome());
+  }
+}));
+					</code></pre>
+					<aside class="notes">
+						Extension methods - Default Methods - Defender Methods
+						@FunctionalInterface
+					</aside>
+				</section>
+
+				<section data-background="img/jovemnerd.jpg">
+					<header><h1 class="meuCabecalho">Lambda Lambda Lambda!!!</h1></header>
+					<aside class="notes">
+						Lambda: Maneira mais simples de implementar uma interface com apenas 1
+						unico método
+					</aside>
+				</section>
+
+				<section data-background="img/supergirl.jpg">
+					
+					<header><p class="meuCabecalho">Herança Múltipla?</p></header>
+					<blockquote style="color: white !important; background-color: rgba(0, 0, 0, 0.6) !important;" cite="http://cr.openjdk.java.net/~briangoetz/lambda/lambda-state-final.html">
+						&ldquo;Default methods provide a more object-oriented way to add concrete behavior to an interface.&rdquo;
+						Brian Goetz.
+					</blockquote>
+					<blockquote style="color: white !important; background-color: rgba(0, 0, 0, 0.6) !important;">
+						&ldquo;Default methods are inherited just like other methods; in most cases, the behavior is just as one would expect. However, when a class's or interface's supertypes provide multiple methods with the same signature, the inheritance rules attempt to resolve the conflict.&rdquo;
+						Brian Goetz.
+					</blockquote>
+					<aside class="notes">
+						Não ainda nao temos herança multipla no Java
+						Nao podem acessar atributos de instancia
+						se uma classe implementar duas interfaces que tenham o mesmo metodo default ou nao ... nao rola
+					</aside>
+				</section>
+
+				<section data-transition="linear" data-background-transition="slide">
+					Problema..
+<pre><code data-trim contenteditable style="font-size: 35px !important; width: 100% !important;">
+
+interface Collection{
+  default void removeAll() {
+   System.out.println("Collection");
+  }
+}
+
+interface List extends Collection{
+  default void removeAll() {
+   System.out.println("List");
+  }
+}
+
+interface Queue extends Collection{
+}
+
+class Teste implements Queue, List{
+	new Teste().removeAll();
+}
+
+					</code></pre>
+<pre class="fragment roll-in"><code data-trim contenteditable style="font-size: 35px !important; width: 100% !important;">
+
+/**Irá imprimir "List"**/
+					</code></pre>
+
+
+				</section>
+
+				<section data-transition="linear" data-background-transition="slide">
+					E Agora?
+<pre><code data-trim contenteditable style="font-size: 35px !important; width: 100% !important;">
+
+interface Collection{
+  default void removeAll() {
+   System.out.println("Collection");
+  }
+}
+interface List extends Collection{
+  default void removeAll() {
+   System.out.println("List");
+  }
+}
+interface Queue extends Collection{
+  default void removeAll() {
+   System.out.println("Queue");
+  }
+}
+new Teste().removeAll();
+
+					</code></pre>
+<pre class="fragment roll-in"><code data-trim contenteditable style="font-size: 35px !important; width: 100% !important;">
+
+/**Irá dá erro de compilação!! Conflito**/
+					</code></pre>
+
+
+				</section>
+
+
+				<section data-transition="linear" data-background-transition="slide">
+				Resolvendo...
+<pre><code data-trim contenteditable style="font-size: 35px !important; width: 100% !important;">
+
+class Teste implements Queue, List{
+	@Override
+	public void removeAll() {
+	   List.super.removeAll();
+	   //Queue.super.removeAll();
+	}
+	new Teste().removeAll();
+}
+					</code></pre>
+
+				</section>
+
+				<section>
+					
+					<h2>Conheça o Stream</h2>
+					<ul>
+						<li>filter</li>
+						<li>map</li>
+						<li>max</li>
+						<li>min</li>
+						<li>peek</li>
+						<li>reduce</li>
+						<li>collect</li>
+					</ul>
+					<aside class="notes">
+					Nao esquecer de entrar na interface Stream
+					Nao produzem efeitos colaterais
+					Evitar poluir a interface collection
+					Nunca guarda dados
+					O Conjunto de operações encadeadas formam um pipeline	
+					</aside>
+					
+
+				</section>
+
+				<section>
+					<h3>Outras mudanças</h3>
+					<ul>
+						<li>Annotations Java Types - <a href="http://types.cs.washington.edu/checker-framework/">checker framework</a></li>
+						<li>Nashorn JavaScript Engine</li>
+						<li>TLS 1.2 padrão da plataforma</li>
+						<li>Melhorias na revogação de certificados</li>
+						<li>Novos algoritmos de criptografia</li>
+					</ul>
+					
+				</section>
+
+				<section>
+					<h3>Futuro</h3>
+					JEP's - JDK Enhancement-Proposal
+					<ul>
+						<li>VO - http://openjdk.java.net/jeps/169</li>
+						<li>GC</li>
+						<li>Generics</li>
+					</ul>
+					<a href="http://openjdk.java.net/jeps/0">http://openjdk.java.net/jeps/0</a>
+
+					<aside class="notes">
+						Provide JVM infrastructure for working with immutable and reference-free objects, in support of efficient by-value computation with non-primitive types.
+					</aside>
+		
+				</section>
+
+				<section>
+					<h2>The end!</h2>
+					<a class="image" href="http://www.casadocodigo.com.br/products/livro-java8" target="_blank" style="display: block;">
+						<img  src="img/java8.png">
+					</a>
+					<a class="link">http://blog.caelum.com.br/o-minimo-que-voce-deve-saber-de-java-8/</a>
+				</section>
+
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>

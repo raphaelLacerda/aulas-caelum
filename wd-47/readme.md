@@ -816,8 +816,6 @@ $newCardForm[0].addEventListener('submit', function(e){
 
 	if(!$newCardContent.value){
 
-		if(document.querySelector('.error')){
-
 			var $card = document.querySelector('.card');
 			$newCard = $card.cloneNode(true);
 
@@ -829,7 +827,9 @@ $newCardForm[0].addEventListener('submit', function(e){
 
 
 			$newCard.querySelector('.cartao-conteudo').textContent = $newCardContent.value;
-			document.querySelector('.wrap-card').insertBefore($newCard, $card);
+			document.querySelector('.mural').insertBefore($newCard, $card);
+
+			//var elementoInserido = elementoPai.insertBefore(novoElemento, elementoDeReferencia);
 	}
 
 	//explicar o formReset
@@ -998,8 +998,28 @@ if(conteudo){
 	$("<div>").attr("id","cartao_" + contador);
 }
 ```
+
+
+
 ## **Exercício:** Adicionando cartões com jQuery
 
+
+Alguns métodos do Jquery
+
+.text()
+.html()
+.addClass
+.delay()
+$( ".cartao" ).slideUp( 300 ).delay( 800 ).fadeIn( 400 );
+.get()
+
+>https://code.tutsplus.com/tutorials/20-helpful-jquery-methods-you-should-be-using--net-10521
+
+> https://www.eduonix.com/blog/web-programming-tutorials/top-10-jquery-functions-which-you-must-know-as-a-developer/
+
+> http://gregfranko.com/jquery-best-practices/#/4
+
+> http://tutorialzine.com/2013/04/50-amazing-jquery-plugins/
 
 # Capítulo 5 - expressões regulares
 
@@ -1200,6 +1220,14 @@ var temPalavraConteudo = texto.match(regex);
  <input type="search" id="busca" placeholder="busca" class="opcoesDaPagina-opcao">
 ```
 ``` javascript
+//exemplo de filter
+
+$('.cartao-conteudo').filter(function (){
+
+   return $(this).text().startsWith('Culpa')
+});
+//=====================
+
 $("#busca").on("input", function(){
 	//guarda o valor digitado, removendo espaços extras.
 	var busca = $(this).val().trim();
@@ -1223,8 +1251,8 @@ $("#busca").on("input", function(){
 
 # Capítulo 6 - Ajax
 
+* falar de http, 1.0, 1.1, 2.0
 
-* mostrar a função load no w3schools
 
 * chamada básica
 
@@ -1270,7 +1298,7 @@ $.ajax( ......... ).fail(function(xhr){
 		Para os alunos entenderem que JSON é apenas texto, e ainda não é um objeto:
 
 ```javascript
-var textoProduto = "{"preco": 100, "descricao": "Cardigan"}";
+var textoProduto = '{"preco": 100, "descricao": "Cardigan"}'
 var objetoProduto = JSON.parse(textoProduto);
 
 console.log(objetoProduto.preco);
@@ -1464,12 +1492,20 @@ function() {
 * principal.js esta todo zuado
 * funcionalidades atuais
 	* sincronizacao.js
+		* salvar cartoes no servidor
+		* recuperar cartoes do servidor
 	* mudaLayout.js
 	* novoCartao.js
+		* codigo que pega o cartao do formulario
 	* ajuda.js
+		* recuperar cartões de instrucoes
 	* adicionaCartao.js
+		* codigo que decideTipoCartao e adicionaCartao(cor, conteudo)
+		* removeCartao
 
 
+
+* http 1.0 - hand shake
 * Isso nem sempre é verdade, mas em geral é uma boa diminuir sim, em especial
 se usarmos o HTTP/1.1 clássico.
 
