@@ -40,7 +40,7 @@ describe('formatação do CEP', function () {
     describe("deve colocar mascara no cep", function () {
         it("quando cep estiver correto", function () {
 
-            expect(cepUtil.validar()).toBe(false);
+            expect(cepUtil.colocarMascara('70673410')).toBe('70.673-410');
         });
         
     });
