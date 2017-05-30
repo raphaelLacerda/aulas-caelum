@@ -10,7 +10,7 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine'],
+    frameworks: ['jasmine-jquery','jasmine'],
 
 
     // list of files / patterns to load in the browser
@@ -22,7 +22,9 @@ module.exports = function(config) {
         'node_modules/babel-polyfill/dist/polyfill.js',
         'node_modules/jquery/dist/jquery.min.js',
         'spec/*.js',
-        'src/js/*.js',
+        'src/js/util/**/*.js',
+        'src/js/repositorio/**/*.js',
+        'src/js/*.js'
       ],
 
 
@@ -34,7 +36,7 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'src/js/*.js': ['coverage']
+      'src/**/*.js': ['coverage']
     },
 
 

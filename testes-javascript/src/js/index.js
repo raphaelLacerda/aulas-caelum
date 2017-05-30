@@ -1,8 +1,23 @@
 'use strict';
+var index = (function ($, todosEnderecos) {
 
-(function(){
 
+    var preencherEndereco = function (cep) {
 
-    
+        todosEnderecos.buscarPorCep(cep)
+            .then(function(endereco) {
+                $('#endereco').html(JSON.stringify(endereco));
+                $('#endereco').addClass('sucesso');
+            });
+    };
 
-})();
+    $('#form').on('submit', function(event) {
+
+        alert('=========chamando foorrrm====================');
+        $('#endereco').html('pesquisando.....');
+        event.preventDefault();
+        preencherEndereco($('.input-cep').val());
+    });
+    return {preencherEndereco : preencherEndereco};
+
+})(jQuery, todosEnderecos);

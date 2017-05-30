@@ -96,3 +96,13 @@ teste();
 * roda no Chrome
 * "babel-polyfill"
 * 'node_modules/babel-polyfill/dist/polyfill.js',
+
+
+## Testes com Spys
+
+* spy do todosEnderecos
+* como simular a tag endereco?
+* npm install jasmine-jquery --save-dev
+* npm install karma-jasmine-jquery
+* frameworks: ['jasmine-jquery','jasmine'],
+* setFixture
