@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "babel-polyfill": "^6.23.0",
     "jasmine": "^2.6.0",
     "jasmine-core": "^2.6.2",
     "karma": "^1.7.0",
@@ -17,5 +18,8 @@
     "karma-jasmine": "^1.1.0",
     "karma-phantomjs-launcher": "^1.0.4",
     "selenium-webdriver": "^3.4.0"
+  },
+  "dependencies": {
+    "jquery": "^3.2.1"
   }
 }

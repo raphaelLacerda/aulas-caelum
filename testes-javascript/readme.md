@@ -85,3 +85,14 @@ teste();
     },
 * 100% de cobertura de codigo
 * comenta o retirar mascara, a cobertura cai para 75%
+
+
+## Testes de Integracao
+* todosEnderecos
+* criar os testes (beforeEach) -> done
+* criar as promisses
+* colocar jQuery
+* resolvendo a promisse no PhantomJS
+* roda no Chrome
+* "babel-polyfill"
+* 'node_modules/babel-polyfill/dist/polyfill.js',

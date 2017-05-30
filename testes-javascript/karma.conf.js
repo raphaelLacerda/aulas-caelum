@@ -19,6 +19,8 @@ module.exports = function(config) {
     //   'spec/**/*Spec.js'
     // ],
   files: [
+        'node_modules/babel-polyfill/dist/polyfill.js',
+        'node_modules/jquery/dist/jquery.min.js',
         'spec/*.js',
         'src/js/*.js',
       ],
