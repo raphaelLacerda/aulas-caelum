@@ -2,43 +2,31 @@ describe('CEP', function () {
     describe("deve ser inválido", function () {
         it("quando não for informado", function () {
 
-            expect(function () {
-                cepUtil.validar();
-            }).toThrow('CEP inválido');
+            expect(cepUtil.validar()).toBe(false);
         });
         it("quando for vazio", function () {
 
-            expect(function () {
-                cepUtil.validar('');
-            }).toThrow('CEP inválido');
+            expect(cepUtil.validar('')).toBe(false);
         });
 
         it("quando for nulo", function () {
 
-            expect(function () {
-                cepUtil.validar(null);
-            }).toThrow('CEP inválido');
+            expect(cepUtil.validar(null)).toBe(false);
         });
 
         it("quando tiver somente com letras", function () {
 
-            expect(function () {
-                cepUtil.validar('dasdasd');
-            }).toThrow('CEP inválido');
+            expect(cepUtil.validar('dasdasdsa')).toBe(false);
         });
 
         it("quando tiver número e letras", function () {
 
-            expect(function () {
-                cepUtil.validar('70.673-42d');
-            }).toThrow('CEP inválido');
+            expect(cepUtil.validar('70.673-41a')).toBe(false);
         });
 
         it("quando for informado sem máscara", function () {
 
-            expect(function () {
-                cepUtil.validar('70673410');
-            }).toThrow('CEP inválido');
+            expect(cepUtil.validar('70673410')).toBe(false);
         });
     });
 
@@ -63,17 +51,13 @@ describe('MÁSCARA', function () {
     describe("não deve ser colocada", function () {
         it("quando cep for maior do que 8 números", function () {
 
-            expect(function () {
-                cepUtil.colocarMascara('706734100');
-            }).toThrow('CEP inválido');
+            expect(cepUtil.colocarMascara('706734100')).toBe('706734100');
         });
     });
     describe("não deve ser colocada", function () {
         it("quando cep estiver com letras", function () {
 
-            expect(function () {
-                cepUtil.colocarMascara('aaaaaaaa');
-            }).toThrow('CEP inválido');
+            expect(cepUtil.colocarMascara('aaaaaaaa')).toBe('aaaaaaaa');
         });
     });
 

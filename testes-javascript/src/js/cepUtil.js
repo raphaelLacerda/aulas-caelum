@@ -2,30 +2,28 @@
 
 var cepUtil = (function () {
 
-    var colocarMascara = function (cep) {
+    var colocarMascara = function (cepSemFormatacao) {
 
-        if (cep.length == 8) {
-            var cepFormatado = cep.substring(0,2)+
-                '.'+cep.substring(2,5)+
-                '-'+cep.substring(5,8);
-
-            if(validar(cepFormatado)){
-                return cepFormatado;
-            }
+        var cepFormatado;
+        if (cepSemFormatacao.length == 8) {
+             cepFormatado = cepSemFormatacao.substring(0,2)+
+                '.'+cepSemFormatacao.substring(2,5)+
+                '-'+cepSemFormatacao.substring(5,8);
         }
-        throw 'CEP inválido';
+        return validar(cepFormatado) ? cepFormatado : cepSemFormatacao;
+
     };
 
-    var retirarMascara = function (cep) {
+    var retirarMascara = function (cepFormatado) {
 
-        return cep.replace(/\.|\-/g, '');
+        return cepFormatado.replace(/\.|\-/g, '');
     };
 
     var validar = function (cep) {
 
         var objER = /^[0-9]{2}.[0-9]{3}-[0-9]{3}$/;
         if (!cep || !objER.test(cep)) {
-            throw 'CEP inválido';
+            return false;
         }
         return true;
     };
