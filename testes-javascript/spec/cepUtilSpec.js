@@ -1,32 +1,48 @@
-describe('validação do CEP', function () {
-    describe("CEP deve ser inválido", function () {
+describe('CEP', function () {
+    describe("deve ser inválido", function () {
         it("quando não for informado", function () {
 
-            expect(cepUtil.validar()).toBe(false);
+            expect(function () {
+                cepUtil.validar();
+            }).toThrow('CEP inválido');
         });
         it("quando for vazio", function () {
 
-            expect(cepUtil.validar('')).toBe(false);
+            expect(function () {
+                cepUtil.validar('');
+            }).toThrow('CEP inválido');
         });
+
         it("quando for nulo", function () {
 
-            expect(cepUtil.validar(null)).toBe(false);
+            expect(function () {
+                cepUtil.validar(null);
+            }).toThrow('CEP inválido');
         });
-        it("quando tiver somente letras", function () {
 
-            expect(cepUtil.validar('dadas')).toBe(false);
+        it("quando tiver somente com letras", function () {
+
+            expect(function () {
+                cepUtil.validar('dasdasd');
+            }).toThrow('CEP inválido');
         });
+
         it("quando tiver número e letras", function () {
 
-            expect(cepUtil.validar('70.673-31a')).toBe(false);
+            expect(function () {
+                cepUtil.validar('70.673-42d');
+            }).toThrow('CEP inválido');
         });
-        it("quando informado sem máscara", function () {
 
-            expect(cepUtil.validar('70673410')).toBe(false);
+        it("quando for informado sem máscara", function () {
+
+            expect(function () {
+                cepUtil.validar('70673410');
+            }).toThrow('CEP inválido');
         });
     });
 
-    describe("CEP deve ser válido", function () {
+    describe("deve ser válido", function () {
         it("quando informado com máscara", function () {
 
             expect(cepUtil.validar('70.673-410')).toBe(true);
@@ -36,12 +52,36 @@ describe('validação do CEP', function () {
 });
 
 
-describe('formatação do CEP', function () {
-    describe("deve colocar mascara no cep", function () {
+describe('MÁSCARA', function () {
+    describe("deve ser colocada", function () {
         it("quando cep estiver correto", function () {
 
             expect(cepUtil.colocarMascara('70673410')).toBe('70.673-410');
         });
-        
+
+    });
+    describe("não deve ser colocada", function () {
+        it("quando cep for maior do que 8 números", function () {
+
+            expect(function () {
+                cepUtil.colocarMascara('706734100');
+            }).toThrow('CEP inválido');
+        });
+    });
+    describe("não deve ser colocada", function () {
+        it("quando cep estiver com letras", function () {
+
+            expect(function () {
+                cepUtil.colocarMascara('aaaaaaaa');
+            }).toThrow('CEP inválido');
+        });
+    });
+
+    describe("deve ser retirada", function () {
+        it("quando cep estiver correto", function () {
+
+            expect(cepUtil.retirarMascara('70.673-410')).toBe('70673410');
+        });
+
     });
 });
