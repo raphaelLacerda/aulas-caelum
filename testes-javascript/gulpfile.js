@@ -19,7 +19,6 @@ var Server = require('karma').Server;
 
 gulp.task('dist', function (callback) {
 
-    // runSequence('clean', 'jshint', 'test', ['webpack', 'estatico', 'html'], 'www', callback);
     runSequence('clean', 'test', 'javascript', 'html', callback);
 });
 
@@ -100,12 +99,5 @@ gulp.task('watch', function (callback) {
 
 gulp.task('watch-dist', function (callback) {
 
-    runSequence('clean-test','javascript', 'html', callback);
-});
-
-gulp.task('clean-test', function () {
-    return gulp.src('www/*', {
-            read: false
-        })
-        .pipe(clean());
+    runSequence('javascript', 'html', callback);
 });
