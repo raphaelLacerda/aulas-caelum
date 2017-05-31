@@ -17,8 +17,8 @@ var todosEnderecos = (function ($) {
                         success: resolve,
                         error: reject
                     });
-                //colocar este erro de propósito
-                }else{
+                    //colocar este erro de propósito
+                } else {
                     reject('cep inválido');
                 }
 
@@ -26,7 +26,6 @@ var todosEnderecos = (function ($) {
         );
         return p1;
     };
-
     // var buscarPorUFCidadeLogradouro = function(pesquisaAsJson) {
 
     //     if (pesquisaAsJson.cidade.length < 3 ||
@@ -54,7 +53,6 @@ var todosEnderecos = (function ($) {
 
     return {
         buscarPorCep: buscarPorCep
-        // buscarPorUFCidadeLogradouro : buscarPorUFCidadeLogradouro
     };
 
 })(jQuery);

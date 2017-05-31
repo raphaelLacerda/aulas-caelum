@@ -1,3 +1,4 @@
+'use strict';
 (function () {
     /*
     describe('deve pesquisar por UF, cidade, Logradouro ', function () {
@@ -46,23 +47,22 @@
         });
     });
 
-    describe("deve buscar endereço", function () {
+    // describe("deve buscar endereço", function () {
 
+    //     jasmine.DEFAULT_TIMEOUT_INTERVAL = 90000;
+    //     var endereco;
+    //     beforeEach(function (done) {
 
-        var endereco;
-        beforeEach(function (done) {
-            jasmine.DEFAULT_TIMEOUT_INTERVAL = 90000;
+    //         todosEnderecos.buscarPorCep('70.673-410')
+    //             .then(function (retorno) {
+    //                 endereco = retorno;
+    //                 done();
+    //             });
+    //     });
 
-            todosEnderecos.buscarPorCep('70.673-410')
-                .then(function (retorno) {
-                    endereco = retorno;
-                    done();
-                });
-        });
+    //     it("quando cep for válido", function () {
 
-        it("quando cep for válido", function () {
-
-            expect(endereco.bairro).toBe('Setor Sudoeste');
-        });
-    });
+    //         expect(endereco.bairro).toBe('Setor Sudoeste');
+    //     });
+    // });
 })();

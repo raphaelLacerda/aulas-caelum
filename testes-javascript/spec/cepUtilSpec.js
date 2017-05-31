@@ -1,3 +1,5 @@
+'use strict';
+
 (function () {
     describe('CEP', function () {
         describe("deve ser inválido", function () {
@@ -39,7 +41,6 @@
 
         });
     });
-
 
     describe('MÁSCARA', function () {
         describe("deve ser colocada", function () {

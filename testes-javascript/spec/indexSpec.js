@@ -1,3 +1,4 @@
+'use strict';
 (function () {
 
     var endereco = {
@@ -46,8 +47,7 @@
             // setFixtures(sandbox({
             //     id: 'endereco'
             // }));
-            setFixtures('<form id="form"></form>'+
-                '<div id="endereco"></div><input class="input-cep"></input>');
+            setFixtures('<div id="endereco"></div><input class="input-cep"></input>');
 
 
         });

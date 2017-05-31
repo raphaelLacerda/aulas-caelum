@@ -1,7 +1,7 @@
 'use strict';
 var index = (function ($, todosEnderecos) {
 
-
+    console.log('hello');
     var preencherEndereco = function (cep) {
 
         todosEnderecos.buscarPorCep(cep)
@@ -13,7 +13,7 @@ var index = (function ($, todosEnderecos) {
 
     $('#form').on('submit', function(event) {
 
-        alert('=========chamando foorrrm====================');
+        console.log('=========chamando foorrrm!====================');
         $('#endereco').html('pesquisando.....');
         event.preventDefault();
         preencherEndereco($('.input-cep').val());
