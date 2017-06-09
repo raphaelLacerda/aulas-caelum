@@ -1,0 +1,32 @@
+{
+  "name": "testes-javascript-selenium",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  // "devDependencies": {
+  //   "jasmine": "^2.6.0",
+  //   "jasmine-core": "^2.6.2",
+  //   "jasmine-jquery": "^2.1.1",
+  //   "karma": "^1.7.0",
+  //   "karma-chrome-launcher": "^2.1.1",
+  //   "karma-coverage": "^1.1.1",
+  //   "karma-jasmine": "^1.1.0",
+  //   "karma-phantomjs-launcher": "^1.0.4",
+  //   "karma-requirejs": "^1.1.0",
+  //   "karma-selenium-webdriver-launcher": "0.0.4",
+  //   "merge-stream": "^1.0.1",
+  //   "requirejs": "^2.3.3",
+  //   "selenium-webdriver": "^3.4.0"
+  // },
+  "dependencies": {
+    "file-system": "^2.2.2",
+    "jquery": "^3.2.1",
+    "require": "^2.4.20",
+    "requirejs": "^2.3.3"
+  }
+}
