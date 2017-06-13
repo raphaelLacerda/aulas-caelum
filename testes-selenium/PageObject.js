@@ -21,6 +21,36 @@ class PageObject {
         return this.driver.findElement(this.By.className(classe));
     }
 
+    buscarTextoNoElementoComClasse(classe){
+
+        this.driver.wait(this.until.elementLocated(this.By.className(classe)), 10000);
+
+        return new Promise(
+
+            (resolve) => {
+
+                this.buscarElementoPorClasse(classe).then((webElement) => {
+
+                    webElement.getText().then(resolve);
+                });
+            }
+        );
+    }
+
+    buscarTextoNoElementoComId(id){
+        this.esperarAteQueElementoApareca(id);
+        return new Promise(
+
+            (resolve) => {
+
+                this.buscarElementoPorId(id).then((webElement) => {
+
+                    webElement.getText().then(resolve);
+                });
+            }
+        );
+    }
+
     clicar(id){
         console.log('clicando no id'+ id);
         return new Promise(

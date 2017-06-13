@@ -11,49 +11,20 @@ class PaginaInicial extends PageObject {
     abrir() {
 
         console.log('abrindo pagina inicial');
-        return new Promise(
-
-            (resolve) => {
-
-                super.navegar('http://localhost/lider').then(resolve);
-            }
-        );
-
+        return super.navegar('http://localhost/lider');
     }
 
     buscarTextoDoRodape() {
 
         console.log('buscando texto do rodape');
-        return new Promise(
-
-            (resolve) => {
-
-                super.buscarElementoPorClasse('footer').then((webElement) => {
-
-                    console.log('div do rodape encontrada');
-                    webElement.getText().then(resolve);
-                });
-            }
-        );
+        return super.buscarTextoNoElementoComClasse('footer');
 
     }
 
 
     buscarInformacoesUsuarioLogado() {
 
-        super.esperarAteQueElementoApareca('divUsuarioLogado');
-
-        return new Promise(
-
-            (resolve) => {
-
-                super.buscarElementoPorId('divUsuarioLogado').then((webElement) => {
-
-                    console.log('encontrei usuario logado');
-                    webElement.getText().then(resolve);
-                });
-            }
-        );
+        return super.buscarTextoNoElementoComId('divUsuarioLogado');
     }
 
     encontrouTextoNoRodape(textoEncontrado) {
