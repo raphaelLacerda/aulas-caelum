@@ -1468,7 +1468,7 @@ function() {
 > explicar o porquê devemos colocar var
 			
 	criar o executa sem declarar o var
-
+> explicar var x let https://pt.stackoverflow.com/questions/47165/qual-%C3%A9-a-diferen%C3%A7a-entre-declara%C3%A7%C3%A3o-de-vari%C3%A1veis-usando-let-e-var
 * Como vamos chamá-la?
 * podemos chamá-la logo depois q ela foi criada - IIFE
 

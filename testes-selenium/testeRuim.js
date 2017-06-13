@@ -8,12 +8,14 @@ describe('quando entrar na tela inicial', function () {
     var driver;
     beforeEach(function (done) {
         webdriver = require('selenium-webdriver');
+
         var By = webdriver.By;
         var until = webdriver.until;
 
         driver = new webdriver.Builder()
             .forBrowser('chrome')
             .build();
+
 
         driver.get('http://localhost/lider');
 
@@ -30,12 +32,13 @@ describe('quando entrar na tela inicial', function () {
     });
 
     it('deve aparecer texto no rodapé', function () {
+
         expect(textoEncontrado.indexOf('Raphael Lacerda') !== -1).toBe(true);
     });
 
     afterEach((done) => {
 
-        driver.quit().then((e) => {
+        driver.quit().then(() => {
             done();
         });
 

@@ -8,7 +8,7 @@
 *.war
 *.ear
 
-
+.history
 node_modules
 /node_modules
 *.log
