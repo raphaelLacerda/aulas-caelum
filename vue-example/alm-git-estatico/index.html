@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ALM-GIT-LAB</title>
+    <link rel="stylesheet" type="text/css" href="build/css/main.css">
+    <link rel="shortcut icon" type="image/png" href="build/img/bb.png" />
+    <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+    <meta name="viewport" content="width=device-width">
+</head>
+
+<body>
+    <!--comentario teste para ser removido-->
+    <div id="app">
+        <div class="ui center aligned header ">
+            <mensagem v-bind:mensagem="msg" v-bind:classe="classe" v-on:nova-msg="setMsg"></mensagem>
+            <div>
+                <div class="ui stackable grid">
+                    <nav class="three column row">
+                        <div class="column">
+                            <div class="ui segment">
+                                <router-link to="/git"><button class="ui teal button "><i class="bitbucket icon big"></i>Criar Repositório GIT</button></router-link>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="ui segment">
+                                <router-link to="/tarefa-build"><button class="ui green button"><i class="gitlab icon big"></i>Criar Tarefa de Build</button></router-link>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="ui segment">
+                                <router-link to="/tarefa-deploy"><button class="ui purple button"><i class="pied piper hat icon big"></i> Criar Tarefa de Deploy</button></router-link>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+                <!-- route outlet -->
+                <!-- component matched by the route will render here -->
+            </div>
+        </div>
+        <div class="ui container">
+            <div class="ui segments">
+                <div class="ui segment">
+                    <router-view v-on:navegar="navegar" v-on:nova-msg="setMsg"></router-view>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="build/vendors/jquery.min.js"></script>
+    <script src="build/bundle.js"></script>
+    <script src="semantic/dist/semantic.min.js"></script>
+</body>
+
+</html>

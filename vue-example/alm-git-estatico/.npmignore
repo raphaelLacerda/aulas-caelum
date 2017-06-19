@@ -1,0 +1,7 @@
+node_modules
+*.tgz
+/dist
+spec
+src
+/build
+/semantic
