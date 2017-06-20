@@ -1,7 +1,6 @@
 'use strict';
 var index = (function ($, todosEnderecos) {
 
-    console.log('hello');
     var preencherEndereco = function (cep) {
 
         todosEnderecos.buscarPorCep(cep)

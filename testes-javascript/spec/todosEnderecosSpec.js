@@ -62,6 +62,7 @@
 
         it("quando cep for válido", function () {
 
+            console.log(endereco);
             expect(endereco.bairro).toBe('Setor Sudoeste');
         });
     });

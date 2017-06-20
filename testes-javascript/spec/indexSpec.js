@@ -52,7 +52,7 @@
 
         });
 
-        it('quando solicitar preenchimento do endereço', function () {
+        it('quando submete form com cpf', function () {
 
             index.preencherEndereco('70.673-410');
 
