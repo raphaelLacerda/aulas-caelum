@@ -1,69 +1,71 @@
 'use strict';
 (function () {
-    /*
-    describe('deve pesquisar por UF, cidade, Logradouro ', function () {
 
-        var enderecos;
+    describe('Busca por UF, cidade, Logradouro', function () {
 
-        beforeEach(function(done) {
+        describe('deve retornar endereços', function () {
 
-            var enderecoPesquisa = {};
-            enderecoPesquisa.uf = 'DF';
-            enderecoPesquisa.cidade = 'Brasilia';
-            enderecoPesquisa.logradouro = 'SQSW';
+            var enderecos;
 
-            todosEnderecos.buscarPorUFCidadeLogradouro(enderecoPesquisa)
-                .then(function (retorno) {
-                    enderecos = retorno;
-                    done();
-                });
-        });
+            beforeEach(function(done) {
 
-        it('passando parâmetros válidos', function () {
+                var enderecoPesquisa = {};
+                enderecoPesquisa.uf = 'DF';
+                enderecoPesquisa.cidade = 'Brasilia';
+                enderecoPesquisa.logradouro = 'SQSW';
 
-            expect(enderecos).toBeArrayOfObjects();
-            expect(enderecos.length).toBeGreaterThan(1);
-            expect(enderecos[0].cep).toBeNonEmptyString();
-        });
-    });
-    */
+                todosEnderecos.buscarPorUFCidadeLogradouro(enderecoPesquisa)
+                    .then(function (retorno) {
+                        enderecos = retorno;
+                        done();
+                    });
+            });
 
-    describe("não deve buscar endereço", function () {
-
-
-        var mensagem;
-        beforeEach(function (done) {
-
-            todosEnderecos.buscarPorCep('aaa')
-                .catch(function (retorno) {
-                    mensagem = retorno;
-                    done();
-                });
-        });
-
-        it("quando cep for inválido", function () {
-
-            expect(mensagem).toBe('cep inválido');
+            it('quando parâmetros forem válidos', function () {
+                expect(enderecos.length).toBeGreaterThan(1);
+                expect(enderecos[0].bairro).toBe('Setor Sudoeste');
+            });
         });
     });
 
-    describe("deve buscar endereço", function () {
+    describe('Busca por Cep', function () {
 
-        jasmine.DEFAULT_TIMEOUT_INTERVAL = 90000;
-        var endereco;
-        beforeEach(function (done) {
+        describe('não deve retornar endereço', function () {
 
-            todosEnderecos.buscarPorCep('70.673-410')
-                .then(function (retorno) {
-                    endereco = retorno;
-                    done();
-                });
+            var mensagem;
+            beforeEach(function (done) {
+
+                todosEnderecos.buscarPorCep('aaa')
+                    .catch(function (retorno) {
+                        mensagem = retorno;
+                        done();
+                    });
+            });
+
+            it('quando cep for inválido', function () {
+
+                expect(mensagem).toBe('cep inválido');
+            });
         });
 
-        it("quando cep for válido", function () {
+        describe('deve retornar endereço', function () {
 
-            console.log(endereco);
-            expect(endereco.bairro).toBe('Setor Sudoeste');
+            jasmine.DEFAULT_TIMEOUT_INTERVAL = 90000;
+            var endereco;
+            beforeEach(function (done) {
+
+                todosEnderecos.buscarPorCep('70.673-410')
+                    .then(function (retorno) {
+                        endereco = retorno;
+                        done();
+                    });
+            });
+
+            it('quando cep for válido', function () {
+
+                expect(endereco.bairro).toBe('Setor Sudoeste');
+                expect(endereco.localidade).toBe('Brasília');
+            });
         });
     });
 })();

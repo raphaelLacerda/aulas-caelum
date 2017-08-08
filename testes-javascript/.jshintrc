@@ -57,6 +57,10 @@
         "jQuery": false,
         "Vue": false,
         "todosEnderecos": false,
+        "expect": false,
+        "it": false,
+        "describe": false,
+        "beforeEach": false,
         "cepUtil": false
     }
 }

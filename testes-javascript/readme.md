@@ -51,10 +51,6 @@ teste();
 >
 > http://blog.caelum.com.br/javascript-entenda-a-nova-especificacao-de-classes-do-harmony-es6/
 
-## Testes de Sistema
-
-* npm install selenium-webdriver
-
 ## Testes de Unidade
 
 ### instalação

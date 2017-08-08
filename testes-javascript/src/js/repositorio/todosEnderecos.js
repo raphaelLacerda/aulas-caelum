@@ -26,33 +26,34 @@ var todosEnderecos = (function ($) {
         );
         return p1;
     };
-    // var buscarPorUFCidadeLogradouro = function(pesquisaAsJson) {
+    var buscarPorUFCidadeLogradouro = function(pesquisaAsJson) {
 
-    //     if (pesquisaAsJson.cidade.length < 3 ||
-    //         pesquisaAsJson.logradouro.length < 3) {
+        if (pesquisaAsJson.cidade.length < 3 ||
+            pesquisaAsJson.logradouro.length < 3) {
 
-    //         throw 'Cidade ou Logradouro com tamanho inválido';
-    //     }
-    //     var p1 = new Promise(
+            throw 'Cidade ou Logradouro com tamanho inválido';
+        }
+        var p1 = new Promise(
 
-    //         function (resolve, reject) {
+            function (resolve, reject) {
 
-    //             $.ajax({
-    //                 url: 'https://viacep.com.br/ws/' +
-    //                 pesquisaAsJson.uf + '/' +
-    //                 pesquisaAsJson.cidade + '/' +
-    //                 pesquisaAsJson.logradouro + '/json/',
-    //                 dataType: 'json',
-    //                 success: resolve,
-    //                 error: reject
-    //             });
-    //         }
-    //     );
-    //     return p1;
-    // };
+                $.ajax({
+                    url: 'https://viacep.com.br/ws/' +
+                    pesquisaAsJson.uf + '/' +
+                    pesquisaAsJson.cidade + '/' +
+                    pesquisaAsJson.logradouro + '/json/',
+                    dataType: 'json',
+                    success: resolve,
+                    error: reject
+                });
+            }
+        );
+        return p1;
+    };
 
     return {
-        buscarPorCep: buscarPorCep
+        buscarPorCep: buscarPorCep,
+        buscarPorUFCidadeLogradouro : buscarPorUFCidadeLogradouro
     };
 
 })(jQuery);

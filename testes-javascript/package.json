@@ -25,6 +25,7 @@
     "gulp-watch": "^4.3.11",
     "jasmine": "^2.6.0",
     "jasmine-core": "^2.6.2",
+    "jasmine-expect": "^3.7.1",
     "jasmine-jquery": "^2.1.1",
     "jshint": "^2.9.4",
     "karma": "^1.7.0",

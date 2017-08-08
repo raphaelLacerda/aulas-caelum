@@ -71,6 +71,13 @@
                 expect(cepUtil.colocarMascara('aaaaaaaa')).toBe('aaaaaaaa');
             });
         });
+        describe("deve ser retirada", function() {
+            it("quando cep estiver formatado", function() {
+
+                expect(cepUtil.retirarMascara('70.673-410')).toBe('70673410');
+            });
+        });
+
     });
 
 })();
