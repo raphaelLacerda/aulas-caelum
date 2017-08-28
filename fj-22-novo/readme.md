@@ -194,4 +194,132 @@ public	ModelAndView	salva(@Valid	SessaoForm	form)	{
 ## 2.5	ANALISANDO	A	REGRA	DE	NEGÓCIO
 
 * Como saber se essa sessão já não existe? **class GerenciadorDeSessao**
-*
+
+> Se	a	sessão	nova	A	começa	antes	de	uma	sessão	já	existente	B,	a	duração	do	filme	da	sessão	A
+deve	acabar	antes	da	sessão	B	começar
+
+> Se	a	sessão	nova	A	começa	depois	de	uma	sessão	já	existente	B,	a	duração	do	filme	da	sessão	B
+deve	acabar	antes	da	sessão	A	começar
+
+* substituindo forEach por stream do Java8
+* Map para colletar os Booleans
+* reduce para saber se em algum horario a sessão está inválida
+* explicar o optional no caso de vazia
+
+``` java
+public	boolean	cabe(Sessao	sessaoAtual)	{
+    Stream<Sessao>	stream	=	sessoesDaSala
+                                    .stream();
+    Stream<Boolean>	booleanStream	=	stream
+                                    .map(sessaoExistente	->	horarioIsValido(sessaoExistente,	sessaoAtual));
+    booleanStream.reduce(Boolean::logicalAnd)
+
+    Optional<Boolean>	optionalCabe	=	booleanStream.reduce(Boolean::logicalAnd)
+    return	optionalCabe.orElse(true);
+}
+```
+
+
+## 2.6	TESTES	DE	UNIDADE
+
+* Junit
+* cenários de testes
+
+``` java
+@Test
+public	void	deveAdicionarSeListaDaSessaoEstiverVazia(){
+    List<Sessao>	sessoes	=	Collections.emptyList();
+    GerenciadorDeSessao	gerenciador	=	new	GerenciadorDeSessao(sessoes);
+    Filme	filme	=	new	Filme();
+    filme.setDuracao(120);
+    LocalTime	horario	=	LocalTime.parse("10:00:00");
+    Sala	sala	=	new	Sala("");
+    Sessao	sessao	=	new	Sessao(horario,	filme,	sala);
+    boolean	cabe	=	gerenciador.cabe(sessao);
+
+    //Assert
+}
+```
+
+
+### 2.9	 EXERCÍCIO	 -	 GARANTINDO	 QUE	 A	 VALIDAÇÃO	 DE	 HORÁRIOS PARA	CADASTRAR	UMA	SESSÃO	ESTÁ	CORRETA
+
+# Capítulo 3 - ADICIONANDO	PREÇO
+
+## 3.1	MELHORANDO	A	MODELAGEM	DO	SISTEMA
+
+> Nossa	regra	de	negócio	diz	que	cada	filme	deve	ter	seu	preço,	para	poder	ser	algo	dinâmico	e	rentável
+para	 o	 cinema.
+
+* colocar preco em filme --> Discutir BigDecimal
+* preco no constructor
+
+> 	cada	sala	deve	possuir	seu	preço
+
+* Logo, preco da sessao = sala + filme
+
+### 3.2	EXERCÍCIO	-	COLOCANDO	PREÇO	NA	SALA	E	FILME
+
+## 3.3	APLICANDO	STRATEGY
+
+
+* adicionando ingressos
+
+* sessao + preco
+* como lidar com os descontos?
+* vamos colocar os If's?
+* interface Desconto
+
+### 3.4	EXERCÍCIO	-	CRIANDO	DESCONTOS	E	INGRESSO
+
+# Capítulo 4 - MELHORANDO	A	USABILIDADE	DA APLICAÇÃO
+
+## 4.1	DEFININDO	O	CATÁLOGO	DE	FILMES	E	A	TELA	DE	DETALHES
+
+* filmes em cartaz
+
+``` java
+@GetMapping("/filme/{id}/detalhe")
+public	ModelAndView	detalhes(@PathVariable("id")	Integer	id){
+    ModelAndView	modelAndView	=	new	ModelAndView("/filme/detalhe");
+    Filme	filme	=	filmeDao.findOne(id);
+    List<Sessao>	sessoes	=	sessaoDao.buscaSessoesDoFilme(filme);
+    modelAndView.addObject("sessoes",	sessoes);
+    return	modelAndView;
+}
+```
+
+### 4.2	 EXERCÍCIO	 -	 CRIANDO	 O	 CATÁLOGO	 DE	 FILMES	 E	 TELA	 DE DETALHES	DO	FILME	COM	SESSÕES	PARA	COMPRA
+
+## 4.3	TRAZENDO	DADOS	REAIS	PARA	NOSSA	APLICAÇÃO
+
+* consumindo rest
+
+
+> http://www.omdbapi.com/?t=tropa+de+elite&apikey=plzBanMe
+
+``` java
+
+@Component
+public	class	ImdbClient	{
+    public	Optional<DetalhesDoFilme>	request(Filme	filme)	{
+        RestTemplate	client	=	new	RestTemplate();
+        String	url	=	//
+        try	{
+                        DetalhesDoFilme	detalhesDoFilme	=	client.getForObject(url,	DetalhesDoFilme.class);
+                        return	Optional.of(detalhesDoFilme);
+        }	catch	(RestClientException	e)	{
+                        return	Optional.empty();
+        }
+    }
+}
+```
+
+* log4j na aplicacao
+* explicar os niveis de logs
+
+### 4.4	EXERCÍCIO	-	CONSUMINDO	SERVIÇO	PARA	DETALHES	DO	FILME
+
+# CAPÍTULO5 - INICIANDO	O	PROCESSO	DE	VENDA
+
+##
