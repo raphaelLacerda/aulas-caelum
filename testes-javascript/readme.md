@@ -3,7 +3,7 @@
 ## Geral
 
 * explicar o var
-* explicar IFFE
+* explicar IIFE
 * explicar o this
 
 ```javascript
