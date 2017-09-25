@@ -55,17 +55,20 @@ MVC	 e	 Hibernate	 na	 aplicaçã
 
 ### exercício 1.3 - iniciando com o GIT
 
-* status, add, commit, log
+* status, add, commit, log, reset, revert, deleted file, blame, show, --amend, checkout, push
 
 ## Entendo os clientes Git'se
 * GitLab, GItHUb, BItBucket
 
-### exercício 1.5 - Criando conta no GItHub
-
-
-## 1.6 - Utilizando GItHub
+## 1.6 - Utilizando GitHub
 * fazer o fork do projeto [fj22-ingressos](https://github.com/caelum/fj22-ingressos.git)
-* entendendo o Readme
+* entendendo o Readme - MarkDown
+
+
+### exercício 1.5 - Criando conta no GItHub
+* git remote add origin https://github.com/raphaellacerda/perfil.git
+
+
 
 ### exercício 1.7 - Fork e clone do projeto
 
@@ -144,6 +147,7 @@ MVC	 e	 Hibernate	 na	 aplicaçã
 
 
 ### 2.2	EXERCÍCIO	-	CRIANDO	NOSSAS	BRANCHES
+* fazer git stash
 
 ## 2.3 - Começando a trabalhar no sistema
 
