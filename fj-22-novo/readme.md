@@ -1,5 +1,9 @@
 # Capítulo 1
 
+
+possíveis erros: setDuration(Duration d)
+%s na url
+
 ## Medo de se apaptar
 
 * o que será o projeto
@@ -41,7 +45,15 @@ MVC	 e	 Hibernate	 na	 aplicaçã
     * -a - arquivos modificados do **changes not staged for commit**
     * -m - mensagem
 
-## Refazendo as merdas
+
+### exercício 1.3 - iniciando com o GIT
+
+* melhorando o editor
+* git config -l
+* pq linha de comando?
+* status, add, commit, log, reset, revert, deleted file, blame, show, --amend, checkout, push
+
+### Refazendo as merdas
 
 * usando o **git revert**
     * desfaz um commit fazendo um novo commit
@@ -53,9 +65,6 @@ MVC	 e	 Hibernate	 na	 aplicaçã
     * **git checkout**
 
 
-### exercício 1.3 - iniciando com o GIT
-
-* status, add, commit, log, reset, revert, deleted file, blame, show, --amend, checkout, push
 
 ## Entendo os clientes Git'se
 * GitLab, GItHUb, BItBucket
