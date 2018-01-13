@@ -12,7 +12,11 @@
 
 ## O que é algoritmo?
 
+* sequência de passos
+* portugol
+
 ## o que é linguagem de programação?
+
 
 
 ## Marcando seu txt com html
@@ -55,7 +59,8 @@
 
 > Exercício 1.7 - console do Chrome
 
-
+* acentuação
+<meta charset="UTF-8">
 
 # Capítulo 2
 
@@ -95,7 +100,12 @@ typeof(1)
 * como calcular minha idade com document.write
 
 > Exercício 2.6 - Organize com variáveis
-> Exercício 2.7 - COnsumo de combustível
+> Exercício 2.7 - Consumo de combustível
+
+* 17.833333333333332
+* Math.round(53.5)
+* falar do toFixed()
+* Math.round(4834/3)
 
 ## evitando escrever BR - função pular linha
 
