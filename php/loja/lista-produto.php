@@ -1,7 +1,7 @@
 <?php
-    include 'cabecalho.php';
-    require 'ConnectionFactory.php';
-    require 'TodosProdutos.php';
+    require_once 'cabecalho.php';
+    require_once 'ConnectionFactory.php';
+    require_once 'TodosProdutos.php';
 
     $fabrica = new ConnectionFactory();
     $conexao = $fabrica->getConexao();

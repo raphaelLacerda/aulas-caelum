@@ -17,6 +17,17 @@
                     <label>Descrição:</label>
                     <textarea name="descricao" class="form-control"></textarea>
                 </div>
+
+                <div class="form-group">
+                    <label>Categoria:</label>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="categoria">Esporte</br>
+                            <input type="radio" name="categoria">Escolar</br>
+                            <input type="radio" name="categoria">Mobilidade</br>
+                        </label>
+                    </div>
+                </div>
                 <input type="submit" value="Cadastrar" class="btn btn-primary">
             </form>
 <?php

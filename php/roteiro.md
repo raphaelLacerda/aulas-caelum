@@ -158,5 +158,133 @@ while($produtoTemp = mysqli_fetch_assoc($resultado)){
 > Exercício campo descricao
 
 
+# Capítulo 5 - Categorias
+
+* relacionar produto com categoria
+```html
+<input type="radio" name="categoria_id" value="<?=$categoria['id']?>">
+
+```
+> Exercício
+
+## Lidando com Selects e Checkbox
+
+* problema com o checkbox usado
+    * não é enviado quando não checado
+
+```javascript
+if(array_key_exists('usado', $_POST)) {
+	$usado = true;
+} else {
+	$usado = false;
+}
+```
+
+* problema ao concatenar booleans
+
+    * O que acontece é que quando a variável usado é false,
+na hora da concatenação, o PHP não escreve a palavra "false", mas sim põe um espaço vazio.
+
+    * altera para String "false"
+
+> Exercicio com Select e Checkboxs
+
+
+
+# Capitulo 6 - Autenticacao e Autorizacao
+
+* tabela de usuarios
+* como armazenar a senha?
+    * discussao sobre hash
+
+> post da caelum sobre senhas no banco
+
+* como buscar o usuario?
+
+```php
+$senhaMd5 = md5($senha);
+$query = "select * from usuarios where login='{$login}'
+    and senha='{$senhaMd5}'";
+
+```
+
+* apos trazer o usuario tentar imprimir com echo
+    * Ele mostrou que tentou converter uma array em uma string.
+
+* isset($_GET["login"]) ==> index.php?login=false
+
+* Não deu certo! Ele mostrou a mensagem de sucesso. Como assim? Vamos olhar nosso código. Sabemos que o parâmetro login é "false". Mas a string false vale true.... Já passamos por isso, no php o == faz a conversão automática. Lembra? E nele, toda string é true. Somente duas strings valem false. Uma delas é "0" e a outra é a string vazia. Vamos testar? Na URI testamos com index.php?login=0:
+
+> Exercicio: fazer login
+
+## Cookies
+
+## Session
+
+* session_start();
+
+## Logout
+
+echo "<br>destruindo sessao";
+// remove all session variables
+session_unset();
+
+// destroy the session
+session_destroy();
+
+
+
+# Capitulo 7 - SQL INjection
+
+* mysqli_real_escape_string($conexao, $login);
+    * leva em conta o encoding do banco de dados
+
+
+# Capitulo 8 - O.O
+
+* classe produto
+
+```php
+<?php
+
+    $produto = new Produto();
+    $produto->setPreco(59.90);
+
+    $outroProduto = new Produto();
+    $outroProduto->setPreco(59.90);
+
+    if ($produto == $outroProduto) {
+        echo "são iguais";
+    } else {
+        echo "são diferentes";
+    }
+?>
+
+```
+
+*
+== para comparar objetos em PHP, as instâncias são consideradas iguais se são instâncias da mesma classe e tem as mesmas propriedades e valores
+
+*  === (3 iguais). Neste caso a comparação só será verdadeira se os objetos se referem a mesma instância da mesma classe.
+
+
+## métodos mágicos
+
+ * __construct(), __destruct(), __call(), __callStatic(), __get(), __set(), __isset(), __unset(), __sleep(), __wakeup(), __toString(), __invoke(), __set_state(), __clone() e __debugInfo()
+
+ * O método __invoke() é chamado quando um script tenta chamar um objeto como uma função.
+    * $obj = new CallableClass;
+    * $obj(5);
+
+
+
+* auto_load php
+
+
+## DAO
+
+
+# Capítulo 9 - Enviando Email
+
 
 

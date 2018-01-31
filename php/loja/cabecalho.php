@@ -21,6 +21,7 @@
 				<li><a href="formulario-produto.php">Adiciona Produto</a></li>
 				<li><a href="lista-produto.php">Lista Produto</a></li>
 				<li><a href="sobre.php">Sobre</a></li>
+				<li><a href="envia-contato.php">Contato</a></li>
 			</ul>
 		</div>
     </div>

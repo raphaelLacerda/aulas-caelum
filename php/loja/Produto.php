@@ -2,6 +2,11 @@
 
 class Produto
 {
+
+    //php novo
+    //function __construct
+
+    //php antigo
     function Produto($nome, $preco, $descricao)
     {
         $this->nome = $nome;
@@ -20,5 +25,10 @@ class Produto
 
     function getDescricaoResumida(){
         return substr($this->descricao, 0, 30) . "...";
+    }
+
+    function __destruct()
+    {
+        echo "Destruindo o produto ".$this->getNome();
     }
 }

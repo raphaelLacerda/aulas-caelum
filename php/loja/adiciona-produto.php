@@ -18,6 +18,10 @@
 
     $fabrica->fechar();
 
+    header("Location: lista-produto.php");
+
+    die();
+
 ?>
     <p class="text-success">Produto <?php echo $nome; ?>, <?= $preco ?>
             adicionado com sucesso!</p>
