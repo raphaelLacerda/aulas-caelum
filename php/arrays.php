@@ -7,7 +7,7 @@ $numeros = [10,40,30,50,100,200];
 // print_r ($numeros[0]);
 
 echo "Total de itens no array ". count($numeros);
-echo "Total de itens no array ". sizeof($numeros);
+echo "<br/>Total de itens no array ". sizeof($numeros);
 
 foreach ($numeros as $num):
 
